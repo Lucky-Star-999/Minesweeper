@@ -1,0 +1,2 @@
+Bỏ mấy cái hình vô đường dẫn sau:
+public > images
