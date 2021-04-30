@@ -44,4 +44,37 @@ class BoardMaking {
         }
     }
 
+
+    // Main function for creating the board
+    put_all_position_into_board() {
+        this.put_bomb_position_into_board();                            // Create the bombs first
+
+        // We will mark the number for each squares, except the bombs (value = -1)
+        for (let i = 0; i < this.number_of_squares_a_column; i++) {
+            for (let j = 0; j < this.number_of_squares_a_row; j++) {
+
+                if (this.board_map[i][j] !== -1) {                          // Skip the position contain bombs
+                    let number_of_surrouning_bombs = 0;                     // Bomb counter
+                    let position = i * this.number_of_squares_a_row + j;    // Convert 2d position into 1d position
+
+                    // Create object of RelativeSquares, because we need to calculate 3x3 surrounding squares
+                    let obj = new RelativeSquares(position, this.number_of_squares_a_row, this.number_of_squares_a_column);
+                    let surrounding_positions = obj.get_3x3_area_position();
+
+                    // Now, it's time to count how many bombs surrounding the postion you are choosing
+                    for (let k = 0; k < surrounding_positions.length; k++) {
+                        for (let bomb_index = 0; bomb_index < this.bomb_positions.length; bomb_index++) {
+                            if (surrounding_positions[k] === this.bomb_positions[bomb_index]) {
+                                number_of_surrouning_bombs++;
+                            }
+                        }
+                    }
+
+                    // Assign the number for the square, it's the number of bombs
+                    this.board_map[i][j] = number_of_surrouning_bombs;
+                }
+            }
+        }
+    }
+
 }
