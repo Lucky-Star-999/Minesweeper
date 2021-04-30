@@ -70,3 +70,9 @@ class RelativeSquares {
 //  0, 0, 0, 0, 0
 //  0, 0, 0, 0, 0]
 // --> Return 3, 4, 8, 9 respectively (3,0), (4,0), (3,1), (4,1)
+
+
+// Export classes
+module.exports = {
+    RelativeSquares: RelativeSquares
+}

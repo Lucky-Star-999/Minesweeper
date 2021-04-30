@@ -1,5 +1,10 @@
+// Import class Bomb to be able to extends
+var bomb = require('./Bomb.js');
+var relativeSquares = require('./RelativeSquares.js');
+
+
 // When user click first at the board, we will create a chance for user to avoid clicking a bomb
-class BombExceptFirstClick extends Bomb {
+class BombExceptFirstClick extends bomb.Bomb {
     constructor(first_click_position, number_of_bombs, number_of_squares_a_row, number_of_squares_a_column) {
         super(number_of_bombs, number_of_squares_a_row, number_of_squares_a_column);
         this.number_of_squares_a_row = parseInt(number_of_squares_a_row);
@@ -11,14 +16,13 @@ class BombExceptFirstClick extends Bomb {
     // Add 3x3 area (first click position is center) for exception
     add_surrounding_first_click_into_exception() {
         let relative_squares_exception =
-            new RelativeSquares(this.first_click_position, this.number_of_squares_a_row, this.number_of_squares_a_column);
+            new relativeSquares.RelativeSquares(this.first_click_position, this.number_of_squares_a_row, this.number_of_squares_a_column);
         relative_squares_exception = relative_squares_exception.get_3x3_area_position();
         
             for(let i=0; i<relative_squares_exception.length; i++){
                 this.exception.push(relative_squares_exception[i]);
             }
 
-            console.log("Exception: " + this.exception);
     }
 
 
@@ -38,4 +42,10 @@ class BombExceptFirstClick extends Bomb {
             this.position_of_bombs.push(temp_position);
         }
     }
+}
+
+
+// Export classes
+module.exports = {
+    BombExceptFirstClick: BombExceptFirstClick
 }

@@ -52,3 +52,9 @@ class Bomb {
     }
 
 }
+
+
+// Export the class such that another file can use classes in this file
+module.exports = {
+    Bomb: Bomb
+}
