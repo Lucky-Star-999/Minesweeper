@@ -1,7 +1,7 @@
-# Minesweeper
-## Official DSA Project
+## Minesweeper
+### Official DSA Project
 
-## API Usage
+### API Usage
 
 ### Run locally
 ### 1. Board Generating
@@ -12,7 +12,7 @@
 
 ## API Functions
 
-## Board making
+### Board making
 - [ ] Randomize bombs
 - [ ] Generate values for board 
 - [ ] Avoid bomb in first click
@@ -21,14 +21,14 @@
   - [ ] Implement queue in js
   - [ ] Implement BFS using the queue
 
-## Leader board
+### Leader board
 - [ ] Singleton of leaderboard 
   Summary: this leaderboard will be an object of JSON or string to save data.
   - [ ] Add score record
   - [ ] Get 10 highest score records (sorting)
   - [ ] Search a user's name in a record (optional)
 
-## Routings (HTTP response)
+### Routings (HTTP response)
 - [ ] Board
 - [ ] User
 
