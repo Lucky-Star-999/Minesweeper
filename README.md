@@ -1,9 +1,9 @@
 ## Minesweeper
 ### Official DSA Project
 
-### API Usage
+## API Usage
 
-## Run locally
+### Run locally
 ### 1. Board Generating
 - Run https://localhost:3000/:UserFirstClick/:BombNumber/:ColumnNumber/:RowNumber
 
