@@ -3,7 +3,7 @@
 
 ### API Usage
 
-### Run locally
+## Run locally
 ### 1. Board Generating
 - Run https://localhost:3000/:UserFirstClick/:BombNumber/:ColumnNumber/:RowNumber
 
@@ -22,8 +22,9 @@
   - [ ] Implement BFS using the queue
 
 ### Leader board
+Summary: this leaderboard will be an object of JSON or string to save data.
+
 - [ ] Singleton of leaderboard 
-  Summary: this leaderboard will be an object of JSON or string to save data.
   - [ ] Add score record
   - [ ] Get 10 highest score records (sorting)
   - [ ] Search a user's name in a record (optional)
