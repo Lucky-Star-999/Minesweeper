@@ -5,7 +5,7 @@
 
 ### Run locally
 ### 1. Board Generating
-- Run https://myapi-minesweeper.herokuapp.com//:UserFirstClick/:BombNumber/:ColumnNumber/:RowNumber
+- Run https://myapi-minesweeper.herokuapp.com/:UserFirstClick/:BombNumber/:ColumnNumber/:RowNumber
 
 ### 2. Leaderboard
 
