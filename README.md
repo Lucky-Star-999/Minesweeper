@@ -37,3 +37,16 @@ Summary: this leaderboard will be an object of JSON or string to save data.
 - [ ] Send HTTP request to get data
 - [ ] Row and column calculating for display
 - [ ] Novelty element for the game
+- [ ] User click functions
+  - Game
+  - [ ] IsWin() -> boolean
+  - [ ] IsLose() -> boolean
+  - [ ] IsBomb(x, y) -> boolean
+  - [ ] IsFlagged(x, y)
+  - [ ] IsNumber(x, y) -> int [0 -> 8]
+  - [ ] Expand3x3(x, y) -> int[][][] (array of position x, y) 
+  - [ ] ExpandUntilBound(x, y) -> int[][][] (array of position x, y) 
+  - Leaderboard
+  - [ ] GetLeaderboard() -> string[] (return 10 highest score)
+  - [ ] InsertRecord(object Record) 
+
