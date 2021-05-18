@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>Minesweeper (Sandbox)</title>
+
+
+    <style>
+        body {
+            background-color: #98fb98;
+        }
+
+        .flag_on {
+            background-color: pink;
+            background-image: url('public/images/flag.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+        }
+
+        .hoverable:hover {
+            background-color: greenyellow;
+        }
+
+        .hoverable {
+            background-color: #29b6f6;
+        }
+
+        .active.bomb {
+            /*border-radius: 5px;
+            margin: 2px;*/
+            background-image: url('public/images/bomb.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+        }
+
+        .active {
+            /*border-radius: 5px;
+            margin: 2px;*/
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+        }
+
+        .active.number_0 {
+            background-image: url('public/images/Number_0.png');
+        }
+
+        .active.number_1 {
+            background-image: url('public/images/Number_1.png');
+        }
+
+        .active.number_2 {
+            background-image: url('public/images/Number_2.png');
+        }
+
+        .active.number_3 {
+            background-image: url('public/images/Number_3.png');
+        }
+
+        .active.number_4 {
+            background-image: url('public/images/Number_4.png');
+        }
+
+        .active.number_5 {
+            background-image: url('public/images/Number_5.png');
+        }
+
+        .active.number_6 {
+            background-image: url('public/images/Number_6.png');
+        }
+
+        .active.number_7 {
+            background-image: url('public/images/Number_7.png');
+        }
+
+        .active.number_8 {
+            background-image: url('public/images/Number_8.png');
+        }
+
+        .active.number_9 {
+            background-image: url('public/images/Number_9.png');
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="jumbotron text-center">
+        <h1>Sandbox Tutorial</h1>
+        <p>Xin chào đến với phòng tập của Minesweeper!</p>
+        <p>Đây là nơi ae có thể test các function xem nó có chạy đúng không :))</p>
+    </div>
+
+    <div class="container-fluid d-flex justify-content-center align-items-center">
+        <div class="" style="width: 500px; background-color: pink;">
+            <div class="d-flex justify-content-center flex-wrap">
+                <div class="hoverable border" style="width: 50px; height:50px;" id="0"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="1"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="2"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="3"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="4"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="5"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="6"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="7"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="8"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="9"></div>
+
+                <div class="hoverable border" style="width: 50px; height:50px;" id="10"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="11"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="12"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="13"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="14"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="15"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="16"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="17"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="18"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="19"></div>
+
+                <div class="hoverable border" style="width: 50px; height:50px;" id="20"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="21"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="22"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="23"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="24"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="25"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="26"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="27"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="28"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="29"></div>
+
+                <div class="hoverable border" style="width: 50px; height:50px;" id="30"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="31"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="32"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="33"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="34"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="35"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="36"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="37"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="38"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="39"></div>
+
+                <div class="hoverable border" style="width: 50px; height:50px;" id="40"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="41"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="42"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="43"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="44"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="45"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="46"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="47"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="48"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="49"></div>
+
+                <div class="hoverable border" style="width: 50px; height:50px;" id="50"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="51"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="52"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="53"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="54"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="55"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="56"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="57"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="58"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="59"></div>
+
+                <div class="hoverable border" style="width: 50px; height:50px;" id="60"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="61"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="62"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="63"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="64"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="65"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="66"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="67"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="68"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="69"></div>
+
+                <div class="hoverable border" style="width: 50px; height:50px;" id="70"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="71"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="72"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="73"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="74"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="75"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="76"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="77"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="78"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="79"></div>
+
+                <div class="hoverable border" style="width: 50px; height:50px;" id="80"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="81"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="82"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="83"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="84"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="85"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="86"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="87"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="88"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="89"></div>
+
+                <div class="hoverable border" style="width: 50px; height:50px;" id="90"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="91"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="92"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="93"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="94"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="95"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="96"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="97"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="98"></div>
+                <div class="hoverable border" style="width: 50px; height:50px;" id="99"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="public/javascripts/sandbox.js"></script>
+    <script>
+        //Remove the menu context
+        $('.hoverable').bind("contextmenu", function (e) {
+            return false;
+        });
+
+        //Remove the menu context
+        $('#board').bind("contextmenu", function (e) {
+            return false;
+        });
+
+        $('.hoverable').mousedown(function (event) {
+            switch (event.which) {
+                case 1:
+                    reveal_square(this.id);
+                    break;
+                case 2:
+                    event.preventDefault();
+
+                    break;
+                case 3:
+                    event.preventDefault();
+                    $(this).toggleClass("flag_on");
+                    break;
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
