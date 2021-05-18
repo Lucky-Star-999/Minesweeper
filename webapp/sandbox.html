@@ -218,7 +218,9 @@
         </div>
     </div>
 
+    <script src="public/javascripts/AppOperator.js"></script>
     <script src="public/javascripts/sandbox.js"></script>
+    <script src="public/javascripts/ideas.js"></script>
     <script>
         //Remove the menu context
         $('.hoverable').bind("contextmenu", function (e) {
@@ -233,7 +235,7 @@
         $('.hoverable').mousedown(function (event) {
             switch (event.which) {
                 case 1:
-                    reveal_square(this.id);
+                    show(this.id);
                     break;
                 case 2:
                     event.preventDefault();
