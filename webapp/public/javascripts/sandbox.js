@@ -13,8 +13,8 @@ var square_objs = [];
 function create_collection_of_squares(){
     for(let i=0; i<10; i++){
         for(let j=0; j<10; j++){
-            let factory_temp = new SquareFactory();
-            square_objs.push(factory_temp.get_square(board[i][j]));
+            let factory_temp = new Square(board[i][j]);
+            square_objs.push(factory_temp);
         }
     }
 }
