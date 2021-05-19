@@ -1,0 +1,149 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    background-color: #9CD5C8;
+}
+
+#big-container {
+    width: 40vw;
+    height: 80vh;
+    background-color: #FED88E;
+    border-radius: 12px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 5% 10px 5%;
+}
+
+#page-name {
+    text-align: center;
+    font-family: 'call_of_ops_dutyregular';
+    color: #F49478;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+    font-size: 7vh;
+    margin-bottom: 10px;
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.slider-title {
+    color: black;
+    text-align: left;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.slider-value-container {
+    width: 10%;
+    height: 15px;
+}
+
+.slider-value {
+    font-size: 16px;
+    text-align: right;
+    margin-top: -5px;
+}
+
+.slider {
+    border: 0.5px solid black;
+    width: 100%;
+    color: #6CCDF4;
+    position: relative;
+    height: 10px;
+    margin: none;
+}
+
+#checkBox-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    margin-top: 20px;
+}
+
+#postScoreCheckbox {
+    margin: 5px 10px 0 0;  
+}
+
+#playername-field {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    font-size: 16px;
+    padding-left: 10px;
+    height: 35px;
+    border-radius: 25px;
+    border: 2px solid white;
+}
+
+#playername-field:hover {
+    border: 2px solid #6CCDF4;
+    transition: 0.3s;
+}
+
+#playername-field:focus {
+    outline: none;
+    border: 2px solid #F49478;
+    transition: 0.3s;
+}
+
+#playername-field:disabled {
+    background-color: lightgrey;
+    border: 2px solid lightgrey;
+}
+
+#buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.button {
+    appearance: none;
+    width: 160px;
+    height: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    border-radius: 25px;
+    border: 2px solid white;
+    transition: 0.4s;
+}
+
+.button:focus {
+    outline: none;
+}
+
+.button:hover {
+    cursor: pointer;
+    transform: translate(0, -5px);
+    transition: 0.4s;
+}
+
+#play-button {
+    color: white;
+    background-color: #4DA619;
+    border: 2px solid #4DA619;
+}
+
+#cancel-button {
+    color: white;
+    background-color: #EB1B23;
+    border: 2px solid #EB1B23;
+}
+
+@font-face {
+    font-family: 'call_of_ops_dutyregular';
+    src: url('../fonts/call_of_ops_duty-webfont.woff') format('woff'),
+         url('../fonts/call_of_ops_duty-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
