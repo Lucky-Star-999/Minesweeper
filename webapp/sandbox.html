@@ -236,10 +236,17 @@
         $('.hoverable').mousedown(function (event) {
             switch (event.which) {
                 case 1:
+                    // Add function to handle logic when user left click here
+                    // To get the position, just pass the parameter as "this.id"
                     show(this.id);
+
+                    
                     break;
                 case 2:
                     event.preventDefault();
+                    //Add function to handle logic when user middle click here
+                    // To get the position, just pass the parameter as "this.id"
+
 
                     break;
                 case 3:

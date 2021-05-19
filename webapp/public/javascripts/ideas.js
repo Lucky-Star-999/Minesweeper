@@ -16,12 +16,17 @@
 //////////////////////////////////////// All sample functions here /////////////////////////////////////////////////////////
 
 // Check if the square is set a flag on
-function is_flag_on(){
-
+function is_flag_on(position) {
+    let id = parseInt(position);
+    if ($("#" + id).attr("class").includes("flag_on")) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // Open a square when user click on this square, left click
-function reveal_a_square(){
+function reveal_a_square() {
 
 }
 
@@ -29,22 +34,22 @@ function reveal_a_square(){
 // However, when user use middle click, instead of expand all 3x3 squares, the square being flag on must be preserved!
 // Hint: You can use function is_flag_on() in this function to check what squares is set a flag on, 
 //          then except these squares
-function reveal_3x3_squares(){
+function reveal_3x3_squares() {
 
 }
 
 // Check if the game is win or lose, or playing ...
 // Default is playing..., neither win nor lose
-function is_won(){
+function is_won() {
 
 }
 
-function is_lose(){
+function is_lose() {
 
 }
 
 // Check if the position contains a bomb, you can place this function in "is_lose()"
-function is_this_a_bomb(){
+function is_this_a_bomb() {
 
 }
 
@@ -52,17 +57,17 @@ function is_this_a_bomb(){
 // The empty squares (number 0) should be automatically opened, but except the squares contains flag
 // Hint: You can use function is_flag_on() to check if the square considering is set a flag on
 // You can also use reveal_3x3_squares() to support this function
-function expand_all_empty_square(){
+function expand_all_empty_square() {
 
 }
 
 // This function helps to count the time ellapsed for playing the game. The time will be the score!
-function time_counter(){
+function time_counter() {
 
 }
 
 // This function is used to turn the state back when user press "Undo"
-function undo(){
+function undo() {
 
 }
 
@@ -70,7 +75,7 @@ function undo(){
 // For example, there is a stack to store all the steps of playing for user
 // The function is to give all information (opened squares, flagged-on, ...) to the stack
 // Anytime user click undo, the stack will be popped
-function record_update_board(){
+function record_update_board() {
 
 }
 
@@ -85,17 +90,17 @@ function record_update_board(){
 // }
 
 
-let position_arr = [1,2,3,11,12,13,21,22,23];
+let position_arr = [1, 2, 3, 11, 12, 13, 21, 22, 23];
 
 // Bất cứ khi nào muốn show 1 ô nào đó ra màn hình, chỉ cần gọi hàm show();
 
-show(12);            //Ô vuôn vị trí thứ 12 sẽ được show ra màn hình
-show(24);            //Ô vuôn vị trí thứ 24 sẽ được show ra màn hình
-show(36);            //Ô vuôn vị trí thứ 36 sẽ được show ra màn hình
+show(12); //Ô vuôn vị trí thứ 12 sẽ được show ra màn hình
+show(24); //Ô vuôn vị trí thứ 24 sẽ được show ra màn hình
+show(36); //Ô vuôn vị trí thứ 36 sẽ được show ra màn hình
 
 // Hoặc là, nếu muốn chèn array thì làm bằng cách này
 
-for(let i=0; i<position_arr.length; i++){
+for (let i = 0; i < position_arr.length; i++) {
     show(position_arr[i]);
 }
 
