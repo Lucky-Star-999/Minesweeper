@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play!</title>
+    <link rel="stylesheet" href="../public/stylesheets/game.css">
+</head>
+<body>
+    <div id="big-container">
+    <!--Tiles///////////////////////////////////////////////-->    
+        <div id="board-container">
+            <div id="tile-container">
+                <div class="tile">1</div>
+            </div>
+        </div>
+    <!--Player info///////////////////////////////////////////////--> 
+        <div id="game-info-container">
+            <div id="player-info-container">
+                <p id="info-title">Player info</p>
+                <div class="info-line">
+                    <p class="myLabel">Player name: </p>
+                    <p class="userInfo">Player1</p>
+                </div>
+                <div class="info-line">
+                    <p class="myLabel">Board: </p>
+                    <p class="userInfo">X x Y</p>
+                </div>
+                <div class="info-line">
+                    <p class="myLabel">No. of Bombs: </p>
+                    <p class="userInfo">30</p>
+                </div>
+                <div class="info-line">
+                    <p class="myLabel">Time passed: </p>
+                    <p class="userInfo">1:30</p>
+                </div>
+                <div class="info-line">
+                    <p class="myLabel">Points: </p>
+                    <p class="userInfo">100</p>
+                </div>
+            </div>
+            <br>
+            <div id="buttons-container">
+                <button class="button" id="undo-button">Undo</button>
+                <button class="button" id="leaderboard-button">Leaderboard</button>
+                <button class="button" id="exit-button">Exit game</button>
+            </div>
+            <br>
+            <p style="color: #707070; font-size: 14px; line-height: 25px;">
+                <b>Left-click: </b>Open 1 square <br/>
+                <b>Right-click: </b>Flag square <br/>
+                <b>Middle-click: </b>Open 3x3 square <br/>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
