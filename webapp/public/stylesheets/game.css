@@ -1,0 +1,118 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    background-color: #9CD5C8;
+}
+
+#big-container {
+    width: 80vw;
+    height: 70vh;
+    background-color: #FED88E;
+    border-radius: 12px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+}
+
+#board-container {
+    border: 0.5px solid #707070;
+    padding: 10px;
+    margin: 5px;
+    width: 67%;
+}
+
+#game-info-container {
+    /*border: 0.5px solid black;*/
+    margin: 5px;
+    width: 33%;
+}
+
+.tile {
+    border: 0.5px solid black;
+    margin: 2px;
+    width: 20px;
+    height: 20px;
+}
+
+#tile-container {
+    background-color: #CECECE;
+    width: 100%;
+    height: 100%;
+    padding: none;
+    border-radius: 3px;
+}
+
+
+
+#player-info-container {
+    border: 0.5px solid #707070;
+    padding: 7px 15px 15px 15px;
+}
+
+#info-title {
+    color: #707070;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 0;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.info-line {
+    color: #707070;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: -10px;
+}
+
+.myLabel {
+    width: 35%;
+}
+
+.userInfo {
+    font-weight: bold;
+}
+
+#buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    width: 125px;
+    height: 30px;
+    border-radius: 15px;
+    color: white;
+    border: 0.5px solid #6CCDF4;
+    background-color: #6CCDF4;
+    transition: 0.4s;
+}
+
+.button:hover {
+    transform: translate(0, -5px);
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+#exit-button {
+    color: #EB1B23;
+    border: 0.5px solid #EB1B23;
+    background-color: #FED88E;
+}
+
+#exit-button:hover {
+    color: white;
+    background-color: #EB1B23;
+    transform: translate(0, -5px);
+    transition: 0.4s;
+}
