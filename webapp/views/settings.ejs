@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
-    <link rel="stylesheet" href="../public/stylesheets/settings.css">
+    <link rel="stylesheet" href="../stylesheets/settings.css">
+    
 </head>
 <body>
     <div class = "container" id = "big-container">
         <h1 id="page-name">Setting the board</h1>
 <!--Dimensions sliders//////////////////////////////////-->
-        <p class="slider-title">Number of Rows (Max = 20)</p>
+        <p class="slider-title">Length of Row (Max = 20)</p>
         <div class = "slider-container">
             <input type="range" min="5" max="20" value="10" class="slider" id="rowRange" oninput="displaySliderValue()">
             <div class="slider-value-container">
@@ -19,9 +20,9 @@
             </div>
         </div>
 
-        <p class="slider-title">Number of Columns (Max = 30)</p>
+        <p class="slider-title">Length of Column (Max = 12)</p>
         <div class = "slider-container">
-            <input type="range" min="5" max="30" value="10" class="slider" id="colRange" oninput="displaySliderValue()">
+            <input type="range" min="5" max="12" value="10" class="slider" id="colRange" oninput="displaySliderValue()">
             <div class="slider-value-container">
                 <p class="slider-value" id="colValue">10</p>
             </div>
@@ -29,7 +30,7 @@
         
         <p class="slider-title">Number of Bombs</p>
         <div class = "slider-container">
-            <input type="range" min="5" max="30" value="10" class="slider" id="bombRange" oninput="displaySliderValue()">
+            <input type="range" min="3" max="30" value="10" class="slider" id="bombRange" oninput="displaySliderValue()">
             <div class="slider-value-container">
                 <p class="slider-value" id="numberOfBombs">10</p>
             </div>
@@ -50,5 +51,7 @@
     </div>
 </body>
 
-<script src="../public/javascripts/settings.js"></script>
+<script src="../javascripts/main_code/Board_Making.js"></script>
+<script src="../javascripts/main_code/App_Operator.js"></script>
+<script src="../javascripts/settings.js"></script>
 </html>

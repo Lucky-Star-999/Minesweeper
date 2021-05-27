@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play!</title>
+    <link rel="stylesheet" href="../stylesheets/game.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <style>
+        .hoverable {
+            background-color: #29b6f6;
+            cursor: pointer;
+            border-radius: 0.5vw;
+            margin: 0.05vw;
+        }
+    </style>
+</head>
+
+<body onload="setInfo()">
+    <div id="big-container">
+        <!--Tiles///////////////////////////////////////////////-->
+        <div id="board-container" style="display:flex; align-items: center; justify-content: center;">
+            <!--<div id="tile-container">
+                <div class="tile">1</div>
+            </div>-->
+            <div id="grid" style="width:50vw; height: 30vw; background-color: green; overflow: auto; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <!--<div id="row-0"
+                    style="display:flex; flex-direction: row; align-items: center; justify-content: center;">
+
+                    <div class="hoverable" style="width: 2.5vw; height:2.5vw;" id="0"></div>
+                    <div class="hoverable" style="width: 2.5vw; height:2.5vw;" id="0"></div>
+                    <div class="hoverable" style="width: 2.5vw; height:2.5vw;" id="0"></div>
+                    <div class="hoverable" style="width: 2.5vw; height:2.5vw;" id="0"></div>
+                    <div class="hoverable" style="width: 2.5vw; height:2.5vw;" id="0"></div>
+                </div>-->
+
+
+            </div>
+        </div>
+        <!--Player info///////////////////////////////////////////////-->
+        <div id="game-info-container">
+            <div id="player-info-container">
+                <p id="info-title">Player info</p>
+                <div class="info-line">
+                    <p class="myLabel">Player name: </p>
+                    <p class="userInfo" id="final-playername"></p>
+                </div>
+                <div class="info-line">
+                    <p class="myLabel">Board: </p>
+                    <p class="userInfo" id="final-boardsize"></p>
+                </div>
+                <div class="info-line">
+                    <p class="myLabel">No. of Bombs: </p>
+                    <p class="userInfo" id="final-numberofbombs"></p>
+                </div>
+                <div class="info-line">
+                    <p class="myLabel">Time passed: </p>
+                    <p class="userInfo" id="final-time-elapsed"></p>
+                </div>
+                <div class="info-line">
+                    <p class="myLabel">Points: </p>
+                    <p class="userInfo">100</p>
+                </div>
+            </div>
+            <br>
+            <div id="buttons-container">
+                <button class="button" id="undo-button">Undo</button>
+                <button class="button" id="leaderboard-button">Leaderboard</button>
+                <button class="button" id="exit-button" onclick="exit()">Exit game</button>
+            </div>
+            <br>
+            <p style="color: #707070; font-size: 14px; line-height: 25px;">
+                <b>Left-click: </b>Open 1 square <br />
+                <b>Right-click: </b>Flag square <br />
+                <b>Middle-click: </b>Open 3x3 square <br />
+            </p>
+            <hr />
+            <p style="color: #707070; font-size: 14px; line-height: 25px; text-align: center;">
+                <b>Team members: </b><br />
+                <span>Hoàng Linh, Hoàng Long, Đức Minh, Quang Tùng</span>
+            </p>
+        </div>
+    </div>
+</body>
+
+<script src="../javascripts/main_code/Board_Making.js"></script>
+<script src="../javascripts/main_code/App_Operator.js"></script>
+<script src="../javascripts/game.js"></script>
+
+<script>
+    function setInfo() {
+
+    }
+</script>
+
+</html>

@@ -15,7 +15,7 @@ let bombRange = document.getElementById('bombRange');
 function adjustnumberofBombs() {
     let rowNum = parseInt(document.getElementById('rowRange').value);
     let colNum = parseInt(document.getElementById('colRange').value);
-    bombRange.setAttribute("max", (rowNum * colNum)/4);
+    bombRange.setAttribute("max", (rowNum * colNum) - 10);
     
 }
 
@@ -35,9 +35,10 @@ function enableNameInput() {
 
 
 function finalize() {
-    window.location.href = "../views/game.html";
+    window.location.href = "/game";
 }
 
 function redirectHome() {
-    window.location.href = "../views/index.html";
+    window.location.href = "/";
 }
+
