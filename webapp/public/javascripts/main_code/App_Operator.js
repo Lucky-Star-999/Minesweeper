@@ -12,6 +12,7 @@ var App_Operator_obj = (function () {
             number_of_bombs: 10,
             first_click_position: 0,
             board: [],
+            game_state: "Waiting",              //Waiting is user haven't clicked any square yet
 
             get_player_name: function(){
                 return this.player_name;
@@ -35,6 +36,18 @@ var App_Operator_obj = (function () {
             
             show: function(id){
                 this.reveal_square(id);
+            },         
+            is_lose: function(){
+                let lose = false;
+                for (let i = 0; i < App_Operator.squares_in_a_column * App_Operator.squares_in_a_row; i++) {
+                    let id_query = "#" + i;
+                    if($(id_query).attr("class").includes("active")){
+                        if($(id_query).attr("class").includes("bomb")){
+                            lose = true;
+                        }
+                    }
+                }
+                return lose;
             }
         };
     }

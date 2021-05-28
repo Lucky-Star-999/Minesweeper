@@ -165,7 +165,7 @@
                 <b>Left-click: </b>Open 1 square <br />
                 <b>Right-click: </b>Flag square <br />
                 <b>Middle-click: </b>Open 3x3 square <br />
-            </p>           
+            </p>
         </div>
     </div>
 
@@ -189,7 +189,7 @@
         return false;
     });
 
-    
+
 
     $('#board-container').bind("contextmenu", function (e) {
         return false;
@@ -203,12 +203,30 @@
     $('.hoverable').mousedown(function (event) {
         switch (event.which) {
             case 1:
+                
+                // Handle when first click
+                if (App_Operator.game_state === "Waiting") {
+                    // Create the numbers behind the grid
+                    App_Operator.first_click_position = parseInt(this.id);
+                    Board_Making.get_board_from_api();
+
+                    // Set timer
+                    App_Operator.game_state = "Playing";
+                    time_counter();
+                } else {
+
+                }
+
                 App_Operator.show(this.id);
+
+                if(App_Operator.is_lose()){
+                    App_Operator.game_state = "Lose";
+                }
+
 
                 break;
             case 2:
                 event.preventDefault();
-
 
                 break;
             case 3:
