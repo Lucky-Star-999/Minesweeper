@@ -16,3 +16,7 @@ final_time_elapsed.innerHTML = App_Operator.get_time_elapsed();
 
 
 Board_Making.create_grid();
+
+
+//Test get data from API
+Board_Making.get_board_from_api();

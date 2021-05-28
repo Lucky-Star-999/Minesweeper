@@ -17,6 +17,91 @@
             border-radius: 0.5vw;
             margin: 0.05vw;
         }
+
+        .hoverable:hover {
+            background-color: greenyellow;
+        }
+
+        .flag_on {
+            background-color: pink;
+            /*background-image: url('../images/flag.png');*/
+            background-image: url('../assets/Flag.svg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+        }
+
+        .active.bomb {
+            /*border-radius: 5px;
+            margin: 2px;*/
+            border-radius: 0.5vw;
+            margin: 0.05vw;
+            /*background-image: url('../images/bomb.png');*/
+            background-image: url('../assets/Bomb.svg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+        }
+
+        .active {
+            /*border-radius: 5px;
+            margin: 2px;*/
+            border-radius: 0.5vw;
+            margin: 0.05vw;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+        }
+
+        .active.number_0 {
+            /*background-image: url('../images/Number_0.png');*/
+            background-image: url('../assets/0.svg');
+        }
+
+        .active.number_1 {
+            /*background-image: url('../images/Number_1.png');*/
+            background-image: url('../assets/1.svg');
+        }
+
+        .active.number_2 {
+            /*background-image: url('../images/Number_2.png');*/
+            background-image: url('../assets/2.svg');
+        }
+
+        .active.number_3 {
+            /*background-image: url('../images/Number_3.png');*/
+            background-image: url('../assets/3.svg');
+        }
+
+        .active.number_4 {
+            /*background-image: url('../images/Number_4.png');*/
+            background-image: url('../assets/4.svg');
+        }
+
+        .active.number_5 {
+            /*background-image: url('../images/Number_5.png');*/
+            background-image: url('../assets/5.svg');
+        }
+
+        .active.number_6 {
+            /*background-image: url('../images/Number_6.png');*/
+            background-image: url('../assets/6.svg');
+        }
+
+        .active.number_7 {
+            /*background-image: url('../images/Number_7.png');*/
+            background-image: url('../assets/7.svg');
+        }
+
+        .active.number_8 {
+            /*background-image: url('../images/Number_8.png');*/
+            background-image: url('../assets/8.svg');
+        }
+
+        .active.number_9 {
+            /*background-image: url('../images/Number_9.png');*/
+            background-image: url('../assets/9.svg');
+        }
     </style>
 </head>
 
@@ -86,6 +171,7 @@
             </p>
         </div>
     </div>
+    <div id="storing_board_info" style="display:none;"></div>
 </body>
 
 <script src="../javascripts/main_code/Board_Making.js"></script>
@@ -96,6 +182,33 @@
     function setInfo() {
 
     }
+
+    $('.hoverable').bind("contextmenu", function (e) {
+            return false;
+        });
+
+        //Remove the menu context
+        $('#board').bind("contextmenu", function (e) {
+            return false;
+        });
+
+        $('.hoverable').mousedown(function (event) {
+            switch (event.which) {
+                case 1:
+                    App_Operator.show(this.id);
+
+                    break;
+                case 2:
+                    event.preventDefault();
+                    
+
+                    break;
+                case 3:
+                    event.preventDefault();
+                    $(this).toggleClass("flag_on");
+                    break;
+            }
+        });
 </script>
 
 </html>

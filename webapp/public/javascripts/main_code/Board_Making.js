@@ -4,35 +4,56 @@ var Board_Making_obj = (function () {
     function init() {
         //var number = 0;
         return {
-            player_name: "Guest",
-            squares_in_a_row: 20,
-            squares_in_a_column: 12,
-            number_of_bombs: 0,
-            board: [
-                [0, 1, 2, 2, 1, 0, 0, 0, 1, 1],
-                [0, 1, -1, -1, 1, 0, 0, 0, 1, -1],
-                [0, 1, 2, 3, 2, 1, 0, 0, 1, 1],
-                [0, 0, 0, 1, -1, 2, 2, 1, 1, 0],
-                [1, 1, 1, 1, 2, -1, 3, -1, 1, 0],
-                [1, -1, 1, 0, 1, 2, -1, 2, 1, 0],
-                [1, 2, 2, 2, 1, 2, 1, 1, 0, 0],
-                [0, 1, -1, 2, -1, 1, 0, 0, 0, 0],
-                [0, 1, 1, 2, 1, 1, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            ],
+            //player_name: "Guest",
+
 
             create_grid: function () {
-                for (let i = 0; i < this.squares_in_a_column; i++) {
+                for (let i = 0; i < App_Operator.squares_in_a_column; i++) {
                     $("#grid").append('<div id="row-' + i + '" style="display:flex; flex-direction: row; align-items: center; justify-content: center;"></div>');
                 }
 
-                for (let i = 0; i < this.squares_in_a_column; i++) {
-                    for (let j = 0; j < this.squares_in_a_row; j++) {
+                for (let i = 0; i < App_Operator.squares_in_a_column; i++) {
+                    for (let j = 0; j < App_Operator.squares_in_a_row; j++) {
                         $("#row-" + i).append('<div class="hoverable" style="width: 2.3vw; height:2.3vw;" id="' +
-                            i * this.squares_in_a_row + j + '"></div>');
+                            (i * App_Operator.squares_in_a_row + j) + '"></div>');
                     }
                 }
             },
+
+            add_class_name: function (json) {
+                let board_1d = [App_Operator.squares_in_a_column * App_Operator.squares_in_a_row];
+
+                for (let i = 0; i < App_Operator.squares_in_a_column; i++) {
+                    for (let j = 0; j < App_Operator.squares_in_a_row; j++) {
+                        board_1d[i * App_Operator.squares_in_a_row + j] = json[i][j];
+                    }
+                }
+
+                for (let i = 0; i < App_Operator.squares_in_a_column * App_Operator.squares_in_a_row; i++) {
+                    if (board_1d[i] === -1) {
+                        $("#" + i).addClass("bomb");
+                    } else {
+                        $("#" + i).addClass("number_" + board_1d[i]);
+                    }
+                }
+            },
+            get_board_from_api: function () {
+                let url_req = 'https://cors-anywhere.herokuapp.com/https://myapi-minesweeper.herokuapp.com/' +
+                    App_Operator.first_click_position + '/' + App_Operator.number_of_bombs + '/' +
+                    App_Operator.squares_in_a_row + '/' + App_Operator.squares_in_a_column + '';
+
+                fetch(url_req, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                    }).then(res => res.json())
+                    .then(json => {
+                        console.log(json);
+
+                        this.add_class_name(json);
+                    });
+            }
 
         };
     }
