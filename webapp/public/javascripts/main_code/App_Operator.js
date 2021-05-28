@@ -15,6 +15,7 @@ var App_Operator_obj = (function () {
             game_state: "Waiting", //Waiting is user haven't clicked any square yet
             history_states: [],
             more_than_second_click: false,
+            full_leaderboard: [],
 
             get_player_name: function () {
                 return this.player_name;
@@ -144,7 +145,7 @@ var App_Operator_obj = (function () {
 
                 $("#leaderboard_table").append(elements);
 
-                for(let i=0; i<json.length; i++){
+                for (let i = 0; i < json.length; i++) {
                     let row_element = '<tr>';
                     row_element += '<td>' + json[i].player_name + '</td>';
                     row_element += '<td>' + json[i].board_dimension + '</td>';
@@ -165,8 +166,105 @@ var App_Operator_obj = (function () {
                         },
                     }).then(res => res.json())
                     .then(json => {
+                        this.full_leaderboard = json;
                         this.export_leaderboard(json);
                     });
+            },
+            export_leaderboard_search_by_name: function (key) {
+                $("#leaderboard_table").empty();
+                let elements = '<tr><th>Player name</th><th>Board dimension</th>' +
+                    '<th>Number of bombs</th><th>Date played</th><th>Time Elapsed (Seconds)</th><th>Result</th></tr>';
+
+                $("#leaderboard_table").append(elements);
+
+                for (let i = 0; i < this.full_leaderboard.length; i++) {
+                    if (this.full_leaderboard[i].player_name.includes(key)) {
+                        let row_element = '<tr>';
+                        row_element += '<td>' + this.full_leaderboard[i].player_name + '</td>';
+                        row_element += '<td>' + this.full_leaderboard[i].board_dimension + '</td>';
+                        row_element += '<td>' + this.full_leaderboard[i].number_of_bombs + '</td>';
+                        row_element += '<td>' + this.full_leaderboard[i].date + '</td>';
+                        row_element += '<td>' + this.full_leaderboard[i].time_elapse + '</td>';
+                        row_element += '<td>' + this.full_leaderboard[i].game_state + '</td>';
+                        row_element += '/<tr>';
+                        $("#leaderboard_table").append(row_element);
+                    }
+
+                }
+            },
+            sort_by_bombs: function () {
+                let temp_leaderboard = this.full_leaderboard;
+                // Insertion sort
+                let n = temp_leaderboard.length;
+                for (let i = 1; i < n; i++) {
+                    // Choosing the first element in our unsorted subarray
+                    let current = temp_leaderboard[i];
+                    // The last element of our sorted subarray
+                    let j = i - 1;
+                    while ((j > -1) && (current.number_of_bombs < temp_leaderboard[j].number_of_bombs)) {
+                        temp_leaderboard[j + 1] = temp_leaderboard[j];
+                        j--;
+                    }
+                    temp_leaderboard[j + 1] = current;
+                }
+
+                // Export
+                $("#leaderboard_table").empty();
+                let elements = '<tr><th>Player name</th><th>Board dimension</th>' +
+                    '<th>Number of bombs</th><th>Date played</th><th>Time Elapsed (Seconds)</th><th>Result</th></tr>';
+
+                $("#leaderboard_table").append(elements);
+
+                for (let i = 0; i < temp_leaderboard.length; i++) {
+                    let row_element = '<tr>';
+                    row_element += '<td>' + temp_leaderboard[i].player_name + '</td>';
+                    row_element += '<td>' + temp_leaderboard[i].board_dimension + '</td>';
+                    row_element += '<td>' + temp_leaderboard[i].number_of_bombs + '</td>';
+                    row_element += '<td>' + temp_leaderboard[i].date + '</td>';
+                    row_element += '<td>' + temp_leaderboard[i].time_elapse + '</td>';
+                    row_element += '<td>' + temp_leaderboard[i].game_state + '</td>';
+                    row_element += '/<tr>';
+                    $("#leaderboard_table").append(row_element);
+
+
+                }
+            },
+            sort_by_time: function () {
+                let temp_leaderboard = this.full_leaderboard;
+                // Insertion sort
+                let n = temp_leaderboard.length;
+                for (let i = 1; i < n; i++) {
+                    // Choosing the first element in our unsorted subarray
+                    let current = temp_leaderboard[i];
+                    // The last element of our sorted subarray
+                    let j = i - 1;
+                    while ((j > -1) && (current.time_elapse < temp_leaderboard[j].time_elapse)) {
+                        temp_leaderboard[j + 1] = temp_leaderboard[j];
+                        j--;
+                    }
+                    temp_leaderboard[j + 1] = current;
+                }
+
+                // Export
+                $("#leaderboard_table").empty();
+                let elements = '<tr><th>Player name</th><th>Board dimension</th>' +
+                    '<th>Number of bombs</th><th>Date played</th><th>Time Elapsed (Seconds)</th><th>Result</th></tr>';
+
+                $("#leaderboard_table").append(elements);
+
+                for (let i = 0; i < temp_leaderboard.length; i++) {
+                    let row_element = '<tr>';
+                    row_element += '<td>' + temp_leaderboard[i].player_name + '</td>';
+                    row_element += '<td>' + temp_leaderboard[i].board_dimension + '</td>';
+                    row_element += '<td>' + temp_leaderboard[i].number_of_bombs + '</td>';
+                    row_element += '<td>' + temp_leaderboard[i].date + '</td>';
+                    row_element += '<td>' + temp_leaderboard[i].time_elapse + '</td>';
+                    row_element += '<td>' + temp_leaderboard[i].game_state + '</td>';
+                    row_element += '/<tr>';
+                    $("#leaderboard_table").append(row_element);
+
+
+                }
             }
         };
     }

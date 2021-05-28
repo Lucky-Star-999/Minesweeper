@@ -186,19 +186,28 @@
                 <h2>Leaderboard</h2>
             </div>
             <div class="modal-body">
-                <p>Some text in the Modal Body</p>
-                <p>Some other text...</p>
+                <div class="search-container" style="margin-bottom: 20px; margin-top: 20px;">
+                    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                        <input id="search_field" placeholder="Search by name"
+                            style="padding: 10px; border-radius: 10px; width: 20%; margin-right: 10px;">
+                        <button class="button" style="margin-right: 100px;" onclick="search_by_name()">Search</button>
+                        <button class="button" style="margin-right: 10px;" onclick="sort_by_bombs()">Sort by Bombs</button>
+                        <button class="button" style="margin-right: 10px;" onclick="sort_by_date()">Sort by Date</button>
+                        <button class="button" style="margin-right: 10px;" onclick="sort_by_time()">Sort by Time</button>
+                    </div>
+                </div>
+
                 <div style="overflow: auto; height: 60vh;">
-                <table id="leaderboard_table">
-                    <tr>
-                        <th>Player name</th>
-                        <th>Board dimension</th>
-                        <th>Number of bombs</th>
-                        <th>Date played</th>
-                        <th>Result</th>
-                    </tr>
-                </table>
-            </div>
+                    <table id="leaderboard_table">
+                        <tr>
+                            <th>Player name</th>
+                            <th>Board dimension</th>
+                            <th>Number of bombs</th>
+                            <th>Date played</th>
+                            <th>Result</th>
+                        </tr>
+                    </table>
+                </div>
             </div>
             <!--<div class="modal-footer">
                 <h3>Modal Footer</h3>
