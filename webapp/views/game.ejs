@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play!</title>
     <link rel="stylesheet" href="../stylesheets/game.css">
+    <link rel="stylesheet" href="../stylesheets/modal.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
@@ -157,7 +158,7 @@
             <br>
             <div id="buttons-container">
                 <button class="button" id="undo-button" onclick="App_Operator.undo()">Undo</button>
-                <button class="button" id="leaderboard-button">Leaderboard</button>
+                <button class="button" id="leaderboard-button" onclick="open_modal()">Leaderboard</button>
                 <button class="button" id="exit-button" onclick="exit()">Exit game</button>
             </div>
             <br>
@@ -173,11 +174,43 @@
         <b>Team members: </b><br />
         <span>Hoàng Linh, Hoàng Long, Đức Minh, Quang Tùng</span>
     </p>
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="close_modal()">&times;</span>
+                <h2>Leaderboard</h2>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the Modal Body</p>
+                <p>Some other text...</p>
+                <div style="overflow: auto; height: 60vh;">
+                <table id="leaderboard_table">
+                    <tr>
+                        <th>Player name</th>
+                        <th>Board dimension</th>
+                        <th>Number of bombs</th>
+                        <th>Date played</th>
+                        <th>Result</th>
+                    </tr>
+                </table>
+            </div>
+            </div>
+            <!--<div class="modal-footer">
+                <h3>Modal Footer</h3>
+            </div>-->
+        </div>
+
+    </div>
 </body>
 
 <script src="../javascripts/main_code/App_Operator.js"></script>
 <script src="../javascripts/main_code/Board_Making.js"></script>
-
+<script src="../javascripts/modal.js"></script>
 <script src="../javascripts/game.js"></script>
 
 <script>
@@ -203,7 +236,7 @@
     $('.hoverable').mousedown(function (event) {
         switch (event.which) {
             case 1:
-                
+
                 // Handle when first click
                 if (App_Operator.game_state === "Waiting") {
                     // Create the numbers behind the grid
@@ -220,9 +253,9 @@
                     App_Operator.update_state();
                 }
 
-                
 
-                if(App_Operator.is_lose()){
+
+                if (App_Operator.is_lose()) {
                     App_Operator.game_state = "Lose";
                 }
                 App_Operator.is_win();

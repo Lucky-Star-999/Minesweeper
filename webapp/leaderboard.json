@@ -1,0 +1,1 @@
+[{"player_name":"Linh","time_elapse":8,"board_dimension":"5x5","game_state":"Win","number_of_bombs":15,"date":"28/5/2021"},{"player_name":"Cat","time_elapse":10,"board_dimension":"10x10","game_state":"Lose","number_of_bombs":10,"date":"28/5/2021"},{"player_name":"Dog","time_elapse":2,"board_dimension":"20x12","game_state":"Lose","number_of_bombs":230,"date":"28/5/2021"}]

@@ -28,6 +28,10 @@ var App_Operator_obj = (function () {
             get_time_elapsed: function () {
                 return this.time_elapse;
             },
+            get_today: function () {
+                let today = new Date();
+                return today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+            },
 
             //Handle logic
             reveal_square: function (id_str) {
@@ -51,7 +55,7 @@ var App_Operator_obj = (function () {
                 }
                 return lose;
             },
-            is_win: function(){
+            is_win: function () {
                 let win = true;
                 let number_of_squares_revealed = 0;
                 for (let i = 0; i < App_Operator.squares_in_a_column * App_Operator.squares_in_a_row; i++) {
@@ -61,7 +65,7 @@ var App_Operator_obj = (function () {
                     }
                 }
 
-                if(number_of_squares_revealed >= (this.squares_in_a_row * this.squares_in_a_column - this.number_of_bombs)){
+                if (number_of_squares_revealed >= (this.squares_in_a_row * this.squares_in_a_column - this.number_of_bombs)) {
                     App_Operator.game_state = "Win";
                 }
             },
@@ -75,9 +79,9 @@ var App_Operator_obj = (function () {
             },
             undo: function () {
                 if (this.history_states.length === 1) {
-                    let confirm_box = window.confirm("This will restart the game, because you can not lose at the first click!\n" + 
-                    "Do you want to undo?");
-                    if(confirm_box){
+                    let confirm_box = window.confirm("This will restart the game, because you can not lose at the first click!\n" +
+                        "Do you want to undo?");
+                    if (confirm_box) {
                         location.reload();
                     }
                 } else if (this.history_states.length < 1) {
@@ -99,6 +103,70 @@ var App_Operator_obj = (function () {
                 } else {
                     $("#undo-button").prop("disabled", false);
                 }
+            },
+            get_time_elapsed: function () {
+                let time_elapse_str = $("#final-time-elapsed").text();
+                let minute = parseInt(time_elapse_str.charAt(0) + time_elapse_str.charAt(1));
+                let second = parseInt(time_elapse_str.charAt(3) + time_elapse_str.charAt(4));
+                return (minute * 60 + second);
+            },
+            export_score: function () {
+                let score_data = {
+                    player_name: this.player_name,
+                    time_elapse: this.time_elapse,
+                    board_dimension: this.get_board_dimension(),
+                    game_state: this.game_state,
+                    number_of_bombs: this.number_of_bombs,
+                    date: this.get_today(),
+                    time_elapse: this.get_time_elapsed()
+                }
+                return score_data;
+            },
+            upload_to_leaderboard: function () {
+                let info_json = this.export_score();
+                fetch('/leaderboard', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        info_json
+                    }),
+                }).then(function () {
+
+                });
+            },
+            export_leaderboard: function (json) {
+
+                $("#leaderboard_table").empty();
+                let elements = '<tr><th>Player name</th><th>Board dimension</th>' +
+                    '<th>Number of bombs</th><th>Date played</th><th>Time Elapsed (Seconds)</th><th>Result</th></tr>';
+
+                $("#leaderboard_table").append(elements);
+
+                for(let i=0; i<json.length; i++){
+                    let row_element = '<tr>';
+                    row_element += '<td>' + json[i].player_name + '</td>';
+                    row_element += '<td>' + json[i].board_dimension + '</td>';
+                    row_element += '<td>' + json[i].number_of_bombs + '</td>';
+                    row_element += '<td>' + json[i].date + '</td>';
+                    row_element += '<td>' + json[i].time_elapse + '</td>';
+                    row_element += '<td>' + json[i].game_state + '</td>';
+                    row_element += '/<tr>';
+                    $("#leaderboard_table").append(row_element);
+                }
+
+            },
+            get_leaderboard: function () {
+                fetch('/get_leaderboard', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                    }).then(res => res.json())
+                    .then(json => {
+                        this.export_leaderboard(json);
+                    });
             }
         };
     }
