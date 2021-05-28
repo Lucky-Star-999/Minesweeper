@@ -52,7 +52,12 @@ function time_counter() {
                 }else if(App_Operator.game_state === "Win"){
                     alert("You win!");
                 }
-                App_Operator.upload_to_leaderboard();
+                if(App_Operator.is_guest){
+
+                }else{
+                    App_Operator.upload_to_leaderboard();
+                }
+                
                 
             }
             let output_time = convert_seconds_to_minute_second(parseInt((now.getTime() - time.getTime()) / 1000));

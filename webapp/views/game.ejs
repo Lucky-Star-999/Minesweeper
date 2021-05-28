@@ -23,6 +23,17 @@
             background-color: greenyellow;
         }
 
+        .first_click {
+            background-color: #29b6f6;
+            cursor: pointer;
+            border-radius: 0.5vw;
+            margin: 0.05vw;
+        }
+
+        .first_click:hover {
+            background-color: greenyellow;
+        }
+
         .flag_on {
             background-color: pink;
             /*background-image: url('../images/flag.png');*/
@@ -191,9 +202,12 @@
                         <input id="search_field" placeholder="Search by name"
                             style="padding: 10px; border-radius: 10px; width: 20%; margin-right: 10px;">
                         <button class="button" style="margin-right: 100px;" onclick="search_by_name()">Search</button>
-                        <button class="button" style="margin-right: 10px;" onclick="sort_by_bombs()">Sort by Bombs</button>
-                        <button class="button" style="margin-right: 10px;" onclick="sort_by_date()">Sort by Date</button>
-                        <button class="button" style="margin-right: 10px;" onclick="sort_by_time()">Sort by Time</button>
+                        <button class="button" style="margin-right: 10px;" onclick="sort_by_bombs()">Sort by
+                            Bombs</button>
+                        <button class="button" style="margin-right: 10px;" onclick="sort_by_date()">Sort by
+                            Date</button>
+                        <button class="button" style="margin-right: 10px;" onclick="sort_by_time()">Sort by
+                            Time</button>
                     </div>
                 </div>
 
@@ -245,31 +259,43 @@
     $('.hoverable').mousedown(function (event) {
         switch (event.which) {
             case 1:
+                try {
+                    if ($(".hoverable").attr("class").includes("first_click")) {
 
-                // Handle when first click
-                if (App_Operator.game_state === "Waiting") {
-                    // Create the numbers behind the grid
-                    App_Operator.first_click_position = parseInt(this.id);
-                    Board_Making.get_board_from_api();
+                    } else {
+                        // Handle when first click
+                        if (App_Operator.game_state === "Waiting") {
+                            // Create the numbers behind the grid
+                            App_Operator.first_click_position = parseInt(this.id);
+                            Board_Making.get_board_from_api();
 
-                    // Set timer
-                    App_Operator.game_state = "Playing";
-                    time_counter();
-                    App_Operator.show(this.id);
-                } else {
-                    App_Operator.more_than_second_click = true;
-                    App_Operator.show(this.id);
-                    App_Operator.update_state();
+                            // Set timer
+                            App_Operator.game_state = "Playing";
+                            time_counter();
+                            App_Operator.show(this.id);
+
+                            $(".hoverable").addClass("first_click");
+                            $(".hoverable").removeClass("hoverable");
+
+                        } else {
+                            App_Operator.more_than_second_click = true;
+                            App_Operator.show(this.id);
+                            App_Operator.update_state();
+                        }
+
+                        if (App_Operator.is_lose()) {
+                            App_Operator.game_state = "Lose";
+                        }
+                        App_Operator.is_win();
+
+                        App_Operator.active_undo_button();
+
+                    }
+                } catch (err) {
+
                 }
 
 
-
-                if (App_Operator.is_lose()) {
-                    App_Operator.game_state = "Lose";
-                }
-                App_Operator.is_win();
-
-                App_Operator.active_undo_button();
                 break;
             case 2:
                 event.preventDefault();

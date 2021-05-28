@@ -36,6 +36,8 @@ var Board_Making_obj = (function () {
                         $("#" + i).addClass("number_" + board_1d[i]);
                     }
                 }
+                $(".first_click").addClass("hoverable");
+                $(".first_click").removeClass("first_click");
             },
             get_board_from_api: function () {
                 let url_req = 'https://cors-anywhere.herokuapp.com/https://myapi-minesweeper.herokuapp.com/' +
@@ -53,6 +55,8 @@ var Board_Making_obj = (function () {
 
                         this.add_class_name(json);
                         App_Operator.board = json;
+                        /*$(".first_click").addClass("hoverable");
+                        $(".first_click").removeClass("first_click");*/
                         App_Operator.update_state();
                     });
             }
