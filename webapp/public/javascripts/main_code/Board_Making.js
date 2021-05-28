@@ -52,6 +52,8 @@ var Board_Making_obj = (function () {
                         console.log(json);
 
                         this.add_class_name(json);
+                        App_Operator.board = json;
+                        App_Operator.update_state();
                     });
             }
 

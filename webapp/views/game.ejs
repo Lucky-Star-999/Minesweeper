@@ -156,7 +156,7 @@
             </div>
             <br>
             <div id="buttons-container">
-                <button class="button" id="undo-button">Undo</button>
+                <button class="button" id="undo-button" onclick="App_Operator.undo()">Undo</button>
                 <button class="button" id="leaderboard-button">Leaderboard</button>
                 <button class="button" id="exit-button" onclick="exit()">Exit game</button>
             </div>
@@ -213,17 +213,21 @@
                     // Set timer
                     App_Operator.game_state = "Playing";
                     time_counter();
+                    App_Operator.show(this.id);
                 } else {
-
+                    App_Operator.more_than_second_click = true;
+                    App_Operator.show(this.id);
+                    App_Operator.update_state();
                 }
 
-                App_Operator.show(this.id);
+                
 
                 if(App_Operator.is_lose()){
                     App_Operator.game_state = "Lose";
                 }
+                App_Operator.is_win();
 
-
+                App_Operator.active_undo_button();
                 break;
             case 2:
                 event.preventDefault();

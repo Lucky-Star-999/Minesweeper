@@ -22,6 +22,8 @@ if (does_need_to_publish.innerHTML === "true") {
     App_Operator.is_guest = true;
 }
 
+App_Operator.active_undo_button();
+
 Board_Making.create_grid();
 
 
@@ -45,7 +47,12 @@ function time_counter() {
             let now = new Date();
             if (App_Operator.game_state !== "Playing") {
                 clearInterval(interval_time_id);
-                alert("You lose!");
+                if(App_Operator.game_state === "Lose"){
+                    alert("You lose!");
+                }else if(App_Operator.game_state === "Win"){
+                    alert("You win!");
+                }
+                
             }
             let output_time = convert_seconds_to_minute_second(parseInt((now.getTime() - time.getTime()) / 1000));
             document.getElementById("final-time-elapsed").innerHTML = output_time;
