@@ -132,24 +132,26 @@
             <div id="player-info-container">
                 <p id="info-title">Player info</p>
                 <div class="info-line">
+                    <p class="myLabel">Will score be published? </p>
+                    <p class="userInfo" id="does_need_to_publish"><%= is_need_publish_score %></p>
+                </div>
+                <div class="info-line">
                     <p class="myLabel">Player name: </p>
-                    <p class="userInfo" id="final-playername"></p>
+                    <p class="userInfo" id="final-playername"><%= name %></p>
                 </div>
                 <div class="info-line">
                     <p class="myLabel">Board: </p>
-                    <p class="userInfo" id="final-boardsize"></p>
+                    <p class="userInfo" id="final-boardsize">
+                        <span id="row_length"><%= number_of_squares_a_row %></span> x
+                        <span id="column_length"><%= number_of_squares_a_column %></span></p>
                 </div>
                 <div class="info-line">
                     <p class="myLabel">No. of Bombs: </p>
-                    <p class="userInfo" id="final-numberofbombs"></p>
+                    <p class="userInfo" id="final-numberofbombs"><%= number_of_bombs %></p>
                 </div>
                 <div class="info-line">
                     <p class="myLabel">Time passed: </p>
-                    <p class="userInfo" id="final-time-elapsed"></p>
-                </div>
-                <div class="info-line">
-                    <p class="myLabel">Points: </p>
-                    <p class="userInfo">100</p>
+                    <p class="userInfo" id="final-time-elapsed">0</p>
                 </div>
             </div>
             <br>
@@ -163,19 +165,19 @@
                 <b>Left-click: </b>Open 1 square <br />
                 <b>Right-click: </b>Flag square <br />
                 <b>Middle-click: </b>Open 3x3 square <br />
-            </p>
-            <hr />
-            <p style="color: #707070; font-size: 14px; line-height: 25px; text-align: center;">
-                <b>Team members: </b><br />
-                <span>Hoàng Linh, Hoàng Long, Đức Minh, Quang Tùng</span>
-            </p>
+            </p>           
         </div>
     </div>
-    <div id="storing_board_info" style="display:none;"></div>
+
+    <p style="color: black; font-size: 14px; line-height: 25px; text-align: center; margin-top: 10px;">
+        <b>Team members: </b><br />
+        <span>Hoàng Linh, Hoàng Long, Đức Minh, Quang Tùng</span>
+    </p>
 </body>
 
-<script src="../javascripts/main_code/Board_Making.js"></script>
 <script src="../javascripts/main_code/App_Operator.js"></script>
+<script src="../javascripts/main_code/Board_Making.js"></script>
+
 <script src="../javascripts/game.js"></script>
 
 <script>
@@ -184,31 +186,37 @@
     }
 
     $('.hoverable').bind("contextmenu", function (e) {
-            return false;
-        });
+        return false;
+    });
 
-        //Remove the menu context
-        $('#board').bind("contextmenu", function (e) {
-            return false;
-        });
+    
 
-        $('.hoverable').mousedown(function (event) {
-            switch (event.which) {
-                case 1:
-                    App_Operator.show(this.id);
+    $('#board-container').bind("contextmenu", function (e) {
+        return false;
+    });
 
-                    break;
-                case 2:
-                    event.preventDefault();
-                    
+    //Remove the menu context
+    $('#board').bind("contextmenu", function (e) {
+        return false;
+    });
 
-                    break;
-                case 3:
-                    event.preventDefault();
-                    $(this).toggleClass("flag_on");
-                    break;
-            }
-        });
+    $('.hoverable').mousedown(function (event) {
+        switch (event.which) {
+            case 1:
+                App_Operator.show(this.id);
+
+                break;
+            case 2:
+                event.preventDefault();
+
+
+                break;
+            case 3:
+                event.preventDefault();
+                $(this).toggleClass("flag_on");
+                break;
+        }
+    });
 </script>
 
 </html>
