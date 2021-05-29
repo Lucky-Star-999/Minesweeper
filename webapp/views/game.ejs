@@ -231,6 +231,7 @@
     </div>
 </body>
 
+<script src="../javascripts/Square.js"></script>
 <script src="../javascripts/main_code/App_Operator.js"></script>
 <script src="../javascripts/main_code/Board_Making.js"></script>
 <script src="../javascripts/modal.js"></script>
@@ -267,7 +268,11 @@
                         if (App_Operator.game_state === "Waiting") {
                             // Create the numbers behind the grid
                             App_Operator.first_click_position = parseInt(this.id);
+
+
                             Board_Making.get_board_from_api();
+
+
 
                             // Set timer
                             App_Operator.game_state = "Playing";
@@ -281,6 +286,7 @@
                             App_Operator.more_than_second_click = true;
                             App_Operator.show(this.id);
                             App_Operator.update_state();
+                            App_Operator.update_state_for_Square_class();
                         }
 
                         if (App_Operator.is_lose()) {
@@ -300,10 +306,84 @@
             case 2:
                 event.preventDefault();
 
+                try {
+                    if ($(".hoverable").attr("class").includes("first_click")) {
+
+                    } else {
+                        // Handle when first click
+                        if (App_Operator.game_state === "Waiting") {
+                            // Create the numbers behind the grid
+                            App_Operator.first_click_position = parseInt(this.id);
+
+
+                            Board_Making.get_board_from_api();
+
+
+
+                            // Set timer
+                            App_Operator.game_state = "Playing";
+                            time_counter();
+                            App_Operator.show(this.id);
+
+                            $(".hoverable").addClass("first_click");
+                            $(".hoverable").removeClass("hoverable");
+
+                        } else {
+
+                            App_Operator.handle_middle_click(parseInt(this.id));
+                            App_Operator.update_state();
+                            App_Operator.update_state_for_Square_class();
+
+                        }
+
+                        if (App_Operator.is_lose()) {
+                            App_Operator.game_state = "Lose";
+                        }
+                        App_Operator.is_win();
+
+                        App_Operator.active_undo_button();
+
+                    }
+                } catch (err) {
+
+                }
+
                 break;
             case 3:
                 event.preventDefault();
-                $(this).toggleClass("flag_on");
+                //$(this).toggleClass("flag_on");
+
+                try {
+                    if ($(".hoverable").attr("class").includes("first_click")) {
+
+                    } else {
+                        // Handle when first click
+                        if (App_Operator.game_state === "Waiting") {
+                            // Create the numbers behind the grid
+
+                            alert("You don't need to put a flag now!");
+
+                        } else {
+                            if ($(this).attr("class").includes("active")) {
+
+                            } else {
+                                $(this).toggleClass("flag_on");
+                                App_Operator.update_state();
+                                App_Operator.update_state_for_Square_class();
+                            }
+                        }
+
+                        if (App_Operator.is_lose()) {
+                            App_Operator.game_state = "Lose";
+                        }
+                        App_Operator.is_win();
+
+                        App_Operator.active_undo_button();
+
+                    }
+                } catch (err) {
+
+                }
                 break;
         }
     });

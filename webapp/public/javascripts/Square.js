@@ -5,6 +5,7 @@ class Square{
         let property_number;                    // State from -1 (bomb) -> 9 (How many bombs around)
         this.relative_position = [];            // Store postion of all surrounding squares
         this.is_opened = false;                 // If the square is opened by clicked, this value is "true"
+        this.is_flagged = false;
         let url_image;
         
         let square_particularly = new SquareFactory();

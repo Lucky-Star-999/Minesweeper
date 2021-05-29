@@ -16,6 +16,7 @@ var App_Operator_obj = (function () {
             history_states: [],
             more_than_second_click: false,
             full_leaderboard: [],
+            board_information: [],
 
             get_player_name: function () {
                 return this.player_name;
@@ -77,6 +78,28 @@ var App_Operator_obj = (function () {
                     current_state[i] = $(id_query).attr("class");
                 }
                 this.history_states.push(current_state);
+
+            },
+            update_state_for_Square_class: function () {
+                // Update state for Square
+                for (let i = 0; i < this.squares_in_a_column; i++) {
+                    for (let j = 0; j < this.squares_in_a_row; j++) {
+                        let id_query = "#" + this.convert_2d_to_1d(j, i);
+                        // Check if the square is opened
+                        if ($(id_query).attr("class").includes("active")) {
+                            this.board_information[i][j].is_opened = true;
+                        } else {
+                            this.board_information[i][j].is_opened = false;
+                        }
+
+                        // Check if the square is flagged
+                        if ($(id_query).attr("class").includes("flag_on")) {
+                            this.board_information[i][j].is_flagged = true;
+                        } else {
+                            this.board_information[i][j].is_flagged = false;
+                        }
+                    }
+                }
             },
             undo: function () {
                 if (this.history_states.length === 1) {
@@ -265,7 +288,54 @@ var App_Operator_obj = (function () {
 
 
                 }
+            },
+            initialize_board_information: function () {
+                // Initialize 2d board
+                let temp_2d_arr = [];
+                for (let i = 0; i < this.squares_in_a_column; i++) {
+                    temp_2d_arr[i] = [];
+                }
+                for (let i = 0; i < this.squares_in_a_column; i++) {
+                    for (let j = 0; j < this.squares_in_a_row; j++) {
+                        temp_2d_arr[i][j] = new Square(this.board[i][j]);
+                    }
+                }
+                this.board_information = temp_2d_arr;
+
+            },
+            ////////////////////////////////////////////////// Phần của Long ////////////////////////////////////////////////////////////////
+            /*
+                Note: 
+                    Sử dụng this.show(id) để mở ra một ô
+            */
+            convert_2d_to_1d: function (x_point, y_point) {
+                return (x_point + (y_point * this.squares_in_a_row));
+            },
+            convert_1d_to_2d_x_axis: function (position_1d) {
+                position_1d = parseInt(position_1d);
+                return (position_1d % this.squares_in_a_row);
+            },
+            convert_1d_to_2d_y_axis: function (position_1d) {
+                position_1d = parseInt(position_1d);
+                return ((position_1d - (position_1d % this.squares_in_a_row)) / this.squares_in_a_row);
+            },
+            handle_middle_click: function (position_clicked) {
+                // Ở đây, tui ví dụ cho việc mở một ô bằng chuột giữa trước
+                this.show(position_clicked);
+
+                // Nhiệm vụ của ông là làm tiếp nhe ...
+                // ...
             }
+
+
+
+
+
+
+
+
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         };
     }
 

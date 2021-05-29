@@ -26,6 +26,8 @@ App_Operator.active_undo_button();
 
 Board_Making.create_grid();
 
+alert("Middle click và tự động expand các ô trống vẫn chưa được hoàn thiện. " + 
+"Hơn nữa, do chạy bẳng API nên ở lần click chuột đầu tiên, nó sẽ load khá lâu, tầm 10-15s để load xong!\n\n");
 
 //Test get data from API
 //Board_Making.get_board_from_api();
