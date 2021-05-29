@@ -61,7 +61,7 @@ var Board_Making_obj = (function () {
                         App_Operator.initialize_board_information();
                         App_Operator.update_state();
                         App_Operator.update_state_for_Square_class();
-                        
+                        App_Operator.expand_all_empty_squares();
                     });
                     
                     

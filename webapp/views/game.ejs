@@ -278,6 +278,7 @@
                             App_Operator.game_state = "Playing";
                             time_counter();
                             App_Operator.show(this.id);
+                            
 
                             $(".hoverable").addClass("first_click");
                             $(".hoverable").removeClass("hoverable");
@@ -324,6 +325,7 @@
                             App_Operator.game_state = "Playing";
                             time_counter();
                             App_Operator.show(this.id);
+                            
 
                             $(".hoverable").addClass("first_click");
                             $(".hoverable").removeClass("hoverable");
@@ -333,7 +335,7 @@
                             App_Operator.handle_middle_click(parseInt(this.id));
                             App_Operator.update_state();
                             App_Operator.update_state_for_Square_class();
-
+                            
                         }
 
                         if (App_Operator.is_lose()) {
@@ -345,7 +347,7 @@
 
                     }
                 } catch (err) {
-
+                    
                 }
 
                 break;
