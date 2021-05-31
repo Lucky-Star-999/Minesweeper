@@ -95,7 +95,7 @@ function finalize() {
     if (nameInput.value === "" && postScore.checked === true) {
         alert("Please enter your name!");
     } else {
-        set_all_user_information();
+        this.set_all_user_information();
         window.location.href = "/game";
     }
 

@@ -367,14 +367,46 @@ var App_Operator_obj = (function () {
                     
             */
             handle_middle_click: function (position_clicked) {
-                // Ở đây, tui ví dụ cho việc mở một ô bằng chuột giữa trước
-                // position_clicked là tọa độ ngay tại ô mà user click vào (tọa độ 1D)
-                this.show(position_clicked); // Sử dụng this.show(position_1D) để hiển thị ra một ô
+                let x_clicked = this.convert_1d_to_2d_x_axis(position_clicked);
+                let y_clicked = this.convert_1d_to_2d_y_axis(position_clicked);
+                let info = this.board_information[y_clicked][x_clicked];
+                if (info.is_opened)
+                {
+                    let row_length = this.squares_in_a_row;
+                    let column_length = this.squares_in_a_column;
+                    
+                    let flags = 0;
+                    for (let i = -1; i < 2; i++)
+                        for (let j = -1 ; j < 2; j++)
+                            if (i != 0 && j != 0)
+                            {
+                                let new_x = x_clicked + i;
+                                let new_y = y_clicked + j;
+                                if (new_x < 0 || new_x >= row_length || new_y < 0 || new_y >= column_length)
+                                        continue;
+                                        
+                                let new_pos = this.board_information[new_y][new_x];
+                                if (new_pos.is_flagged)
+                                    flags++;
+                            }
+                    
+                    if (info.property_number == flags) 
+                    {
+                        for (let i = -1; i < 2; i++)
+                            for (let j = -1 ; j < 2; j++)
+                                if (!(i == 0 && j == 0))
+                                {
+                                    let new_x = x_clicked + i;
+                                    let new_y = y_clicked + j;
+                                    if (new_x < 0 || new_x >= row_length || new_y < 0 || new_y >= column_length)
+                                        continue;
 
-                // Nhiệm vụ của ông là làm tiếp nhe ...
-                // ...
-                
-                
+                                    let new_pos = this.board_information[new_y][new_x];
+                                    if (new_pos.is_flagged == false)
+                                        this.show(this.convert_2d_to_1d(new_x,new_y));
+                                }
+                    }
+                }
             },
             /*
             Đây là function mẫu cho handle_middle click, nếu thấy không ổn thì ông cứ copy paste lên rồi xài nhe
@@ -441,8 +473,43 @@ var App_Operator_obj = (function () {
                     
             */
             expand_all_empty_squares: function (position_clicked) {
+                alert("expand_all_empty_square");
+                let queue = new Queue();
+                
+                if (this.get_property_value(position_clicked) == 0)
+                    queue.enqueue(position_clicked);
 
+                while (!queue.isEmpty){
+                    let item = queue.dequeue();
+                    this.show(item);
+                    let x = this.convert_1d_to_2d_x_axis(item);
+                    let y = this.convert_1d_to_2d_y_axis(item);
+                    for (let i = -1; i < 2; i++)
+                        for (let j = -1; j < 2; j++)
+                        {
+                            let new_x = x + i;
+                            let new_y = y + j;
+                            if (new_x < 0 || new_x >= row_length || new_y < 0 || new_y >= column_length)
+                                continue;
+                            
+                            queue.enqueue(this.convert_2d_to_1d(new_x, new_y));
+                        }
+                }
+
+            },
+
+            is_item_opened: function (position) {
+                let x = this.convert_1d_to_2d_x_axis(position);
+                let y = this.convert_1d_to_2d_y_axis(position);
+                return this.board_information[y][x].is_opened;
+            },
+
+            get_property_value: function(position) {
+                let x = this.convert_1d_to_2d_x_axis(position);
+                let y = this.convert_1d_to_2d_y_axis(position);
+                return this.board_information[y][x].property_number;
             }
+
 
 
 
