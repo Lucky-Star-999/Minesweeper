@@ -378,7 +378,7 @@ var App_Operator_obj = (function () {
                     let flags = 0;
                     for (let i = -1; i < 2; i++)
                         for (let j = -1 ; j < 2; j++)
-                            if (i != 0 && j != 0)
+                            if (i != 0 || j != 0)
                             {
                                 let new_x = x_clicked + i;
                                 let new_y = y_clicked + j;
