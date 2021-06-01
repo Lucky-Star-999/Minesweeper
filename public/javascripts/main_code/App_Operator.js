@@ -473,28 +473,40 @@ var App_Operator_obj = (function () {
                     
             */
             expand_all_empty_squares: function (position_clicked) {
-                alert("expand_all_empty_square");
-                let queue = new Queue();
                 
-                if (this.get_property_value(position_clicked) == 0)
+                let queue = new Queue();
+                let row_length = this.squares_in_a_row;
+                let column_length = this.squares_in_a_column;
+                let visited = [];
+
+                // alert("expand_all_empty_square" + this.get_property_value(position_clicked));
+                if (this.get_property_value(position_clicked) == 0 && !this.is_item_opened(position_clicked))
                     queue.enqueue(position_clicked);
 
-                while (!queue.isEmpty){
+                while (!queue.isEmpty()){
                     let item = queue.dequeue();
                     this.show(item);
-                    let x = this.convert_1d_to_2d_x_axis(item);
-                    let y = this.convert_1d_to_2d_y_axis(item);
-                    for (let i = -1; i < 2; i++)
-                        for (let j = -1; j < 2; j++)
-                        {
-                            let new_x = x + i;
-                            let new_y = y + j;
-                            if (new_x < 0 || new_x >= row_length || new_y < 0 || new_y >= column_length)
-                                continue;
-                            
-                            queue.enqueue(this.convert_2d_to_1d(new_x, new_y));
-                        }
-                }
+                    visited.push(item);
+                    if (this.get_property_value(item) == 0)
+                    {
+                        let x = this.convert_1d_to_2d_x_axis(item);
+                        let y = this.convert_1d_to_2d_y_axis(item);
+                        for (let i = -1; i < 2; i++)
+                            for (let j = -1; j < 2; j++)
+                                if (i !=0 || j != 0)
+                                {
+                                    let new_x = x + i;
+                                    let new_y = y + j;
+                                    if (new_x < 0 || new_x >= row_length || new_y < 0 || new_y >= column_length)
+                                        continue;
+                                    
+                                    
+                                    let new_item = this.convert_2d_to_1d(new_x, new_y);
+                                    if (!this.is_item_opened(new_item) && visited.indexOf(new_item)==-1)
+                                        queue.enqueue(new_item);
+                                }
+                    }        
+                 }
 
             },
 
@@ -507,6 +519,7 @@ var App_Operator_obj = (function () {
             get_property_value: function(position) {
                 let x = this.convert_1d_to_2d_x_axis(position);
                 let y = this.convert_1d_to_2d_y_axis(position);
+                console.log("x = " + x + " y = " + y);
                 return this.board_information[y][x].property_number;
             }
 
