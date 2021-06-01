@@ -11,9 +11,9 @@
 <body>
     <div class = "container" id = "big-container">
         <h1 id="game-title">Minesweeper</h1>
-        <!--<input type="text" class="input-field" id="name-field" placeholder="Player Name"></input><br>-->
+        <br>
         <button class='button' id='playButton' onclick="redirectSettings()">Play</button>
-        <button class='button' id='creditsButton' onclick="open_modal2()">Instruction</button>
+        <button class='button' id='instructionButton' onclick="open_modal2()">Instruction</button>
     </div>
     <p>Build 0.2</p>
         <!-- The Modal -->
@@ -23,9 +23,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="close" onclick="close_modal2()">&times;</span>
-                    <h2>Instruction</h2>
+                    <h2>Instructions & Credits</h2>
                 </div>
-                <div class="modal-body" style="margin-left: 10%; margin-right: 10%;">
+                <div class="modal-body">
                     <div>
                         <h3>Team members:</h3>
                         <p>Nguyễn Hoàng Linh - ITITIU19023</p>
@@ -34,8 +34,8 @@
                         <p>Trần Quang Tùng - ITITIU19237</p>
                     </div>
                     <hr/>
+                    <h3>How to play</h3>
                     <div style="margin-top: 20px;">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         Minesweeper is a logic puzzle game that takes place on a grid "minefield". 
                         The player's goal is to clear (open) every square in the grid without hitting the mine - 
                         and to do it as quickly as possible. 
@@ -43,9 +43,8 @@
                         clues will also appear as numbers representing the number of mines located in the 8 squares around them.
                     </div>
                     <div style="margin-top: 10px; margin-bottom: 20px;">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         During the game, you can mark places where you think there will be mines by right-clicking to insert a flag. 
-                        Be careful, just accidentally hitting a landmine is enough to make the game over!
+                        Be careful though, just accidentally hitting a landmine is enough to make the game over!
                     </div>
                 </div>
             </div>

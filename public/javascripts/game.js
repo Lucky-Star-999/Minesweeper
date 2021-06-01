@@ -39,12 +39,12 @@ function time_counter() {
                 clearInterval(interval_time_id);
                 if(App_Operator.game_state === "Lose"){
                     alert("You lose!");
-                }else if(App_Operator.game_state === "Win"){
+                } else if(App_Operator.game_state === "Win"){
                     alert("You win!");
                 }
                 if(App_Operator.is_guest){
 
-                }else{
+                } else {
                     App_Operator.upload_to_leaderboard();
                 }
                 

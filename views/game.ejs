@@ -10,119 +10,14 @@
     <link rel="stylesheet" href="../stylesheets/modal.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <style>
-        .hoverable {
-            background-color: #29b6f6;
-            cursor: pointer;
-            border-radius: 0.5vw;
-            margin: 0.05vw;
-        }
-
-        .hoverable:hover {
-            background-color: greenyellow;
-        }
-
-        .first_click {
-            background-color: #29b6f6;
-            cursor: pointer;
-            border-radius: 0.5vw;
-            margin: 0.05vw;
-        }
-
-        .first_click:hover {
-            background-color: greenyellow;
-        }
-
-        .flag_on {
-            background-color: pink;
-            /*background-image: url('../images/flag.png');*/
-            background-image: url('../assets/Flag.svg');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: contain;
-        }
-
-        .active.bomb {
-            /*border-radius: 5px;
-            margin: 2px;*/
-            border-radius: 0.5vw;
-            margin: 0.05vw;
-            /*background-image: url('../images/bomb.png');*/
-            background-image: url('../assets/Bomb.svg');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: contain;
-        }
-
-        .active {
-            /*border-radius: 5px;
-            margin: 2px;*/
-            border-radius: 0.5vw;
-            margin: 0.05vw;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: contain;
-        }
-
-        .active.number_0 {
-            /*background-image: url('../images/Number_0.png');*/
-            background-image: url('../assets/0.svg');
-        }
-
-        .active.number_1 {
-            /*background-image: url('../images/Number_1.png');*/
-            background-image: url('../assets/1.svg');
-        }
-
-        .active.number_2 {
-            /*background-image: url('../images/Number_2.png');*/
-            background-image: url('../assets/2.svg');
-        }
-
-        .active.number_3 {
-            /*background-image: url('../images/Number_3.png');*/
-            background-image: url('../assets/3.svg');
-        }
-
-        .active.number_4 {
-            /*background-image: url('../images/Number_4.png');*/
-            background-image: url('../assets/4.svg');
-        }
-
-        .active.number_5 {
-            /*background-image: url('../images/Number_5.png');*/
-            background-image: url('../assets/5.svg');
-        }
-
-        .active.number_6 {
-            /*background-image: url('../images/Number_6.png');*/
-            background-image: url('../assets/6.svg');
-        }
-
-        .active.number_7 {
-            /*background-image: url('../images/Number_7.png');*/
-            background-image: url('../assets/7.svg');
-        }
-
-        .active.number_8 {
-            /*background-image: url('../images/Number_8.png');*/
-            background-image: url('../assets/8.svg');
-        }
-
-        .active.number_9 {
-            /*background-image: url('../images/Number_9.png');*/
-            background-image: url('../assets/9.svg');
-        }
-    </style>
 </head>
 
 <body onload="setInfo()">
+    <p>Build 0.2</p>
     <div id="big-container">
         <!--Tiles///////////////////////////////////////////////-->
         <div id="board-container" style="display:flex; align-items: center; justify-content: center;">
-            <div id="grid" style="width:50vw; height: 30vw; background-color: green; overflow: auto; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div id="grid">
             </div>
         </div>
         <!--Player info///////////////////////////////////////////////-->
@@ -130,7 +25,7 @@
             <div id="player-info-container">
                 <p id="info-title">Player info</p>
                 <div class="info-line">
-                    <p class="myLabel">Will score be published? </p>
+                    <p class="myLabel">Publish score?</p>
                     <p class="userInfo" id="does_need_to_publish"><%= is_need_publish_score %></p>
                 </div>
                 <div class="info-line">
@@ -159,19 +54,13 @@
                 <button class="button" id="exit-button" onclick="exit()">Exit game</button>
             </div>
             <br>
-            <p style="color: #707070; font-size: 14px; line-height: 25px;">
+            <p style="color: black; font-size: 14px; line-height: 25px;">
                 <b>Left-click: </b>Open 1 square <br />
                 <b>Right-click: </b>Flag square <br />
                 <b>Middle-click: </b>Open 3x3 square <br />
             </p>
         </div>
     </div>
-
-    <p style="color: black; font-size: 14px; line-height: 25px; text-align: center; margin-top: 10px;">
-        <b>Team members: </b><br />
-        <span>Hoàng Linh, Hoàng Long, Đức Minh, Quang Tùng</span>
-    </p>
-
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -184,15 +73,14 @@
             </div>
             <div class="modal-body">
                 <div class="search-container" style="margin-bottom: 20px; margin-top: 20px;">
-                    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-                        <input id="search_field" placeholder="Search by name"
-                            style="padding: 10px; border-radius: 10px; width: 20%; margin-right: 10px;">
-                        <button class="button" style="margin-right: 100px;" onclick="search_by_name()">Search</button>
-                        <button class="button" style="margin-right: 10px;" onclick="sort_by_bombs()">Sort by
+                    <div style="display: flex; flex-direction: row; align-content: center;">
+                        <input id="search_field" placeholder="Search by name">
+                        <button class="button" style="margin-right: 170px; margin-top: 5px" onclick="search_by_name()">Search</button>
+                        <button class="button" style="margin-right: 10px; margin-top: 5px" onclick="sort_by_bombs()">Sort by
                             Bombs</button>
-                        <button class="button" style="margin-right: 10px;" onclick="sort_by_date()">Sort by
+                        <button class="button" style="margin-right: 10px; margin-top: 5px" onclick="sort_by_date()">Sort by
                             Date</button>
-                        <button class="button" style="margin-right: 10px;" onclick="sort_by_time()">Sort by
+                        <button class="button" style="margin-right: 10px; margin-top: 5px" onclick="sort_by_time()">Sort by
                             Time</button>
                     </div>
                 </div>
