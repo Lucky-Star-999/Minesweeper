@@ -43,7 +43,7 @@ var App_Operator_obj = (function () {
                     $("#" + id).addClass("active");
 
                     if ($("#" + id).attr("class").includes("number_0")) {
-                        this.expand_all_empty_squares();
+                        //this.expand_all_empty_squares();
                     }
                 } catch (err) {
 
