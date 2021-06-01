@@ -19,7 +19,6 @@ router.get('/settings', function (req, res, next) {
 });
 
 router.get('/game', function (req, res, next) {
-    //res.render('../views/game');
     let data = readFile();
 
     res.render('../views/game', {
@@ -29,23 +28,11 @@ router.get('/game', function (req, res, next) {
         name: data.info_json.chosen_name,
         is_need_publish_score: data.info_json.is_need_publish_score
     });
-
 });
 
 router.get('/get_leaderboard', function (req, res, next) {
-    //res.render('../views/game');
     let data = readFile_2();
-
-    /*res.render('../views/game', {
-      number_of_squares_a_row: data.info_json.chosen_row_length,
-      number_of_squares_a_column: data.info_json.chosen_column_length,
-      number_of_bombs: data.info_json.chosen_bomb_number,
-      name: data.info_json.chosen_name,
-      is_need_publish_score: data.info_json.is_need_publish_score
-    });*/
-
     res.json(data);
-
 });
 
 // Main URL here!
@@ -78,19 +65,13 @@ module.exports = router;
 //////////////////////////////////////////////////// Function Support //////////////////////////////////////////////
 function readFile() {
     let rawdata = fs.readFileSync('temp_data_board.json');
-
     let data = JSON.parse(rawdata);
-
-    /*let file = "";
-    fs.writeFileSync('temp_data_board.json', file);*/
     return data;
 }
 
 function readFile_2() {
     let rawdata = fs.readFileSync('leaderboard.json');
-
     let data = JSON.parse(rawdata);
-
     return data;
 }
 
@@ -123,7 +104,6 @@ class RelativeSquares {
     // return surrounding 3x3 squares position
     get_3x3_area_position() {
         let positions = [];
-
         for (let i = -1; i <= 1; i++) {
             for (let j = -1; j <= 1; j++) {
                 if (this.x + i < 0 || this.x + i >= this.number_of_squares_a_row) {
@@ -135,7 +115,6 @@ class RelativeSquares {
                 }
             }
         }
-
         return positions;
     }
 }
@@ -145,7 +124,6 @@ class Bomb {
         this.number_of_bombs = parseInt(number_of_bombs);
         this.maximum_number_of_squares = parseInt(number_of_squares_a_row) * parseInt(number_of_squares_a_column);
         this.position_of_bombs = []; // Store position of the bombs
-
 
         // The array will contain positions must be avoid when add to position_of_bombs
         // Ex: The duplicate bombs, the first click of user, ...
@@ -159,9 +137,6 @@ class Bomb {
         return Math.floor(Math.random() * max) + min; // Random from [0 to 80] (if the board is 9x9)
     }
 
-
-
-
     // Check if the position must not be add into position_of_bombs
     is_position_excluded(position) {
         for (let i = 0; i < this.exception.length; i++) {
@@ -169,20 +144,16 @@ class Bomb {
                 return true;
             }
         }
-
         return false;
     }
-
 
     // Main function to create bombs' position
     create_bombs() {
         for (let i = 0; i < this.number_of_bombs; i++) {
             let temp_position = this.get_random_position();
-
             while (this.is_position_excluded(temp_position)) {
                 temp_position = this.get_random_position();
             }
-
             this.exception.push(temp_position);
             this.position_of_bombs.push(temp_position);
         }
@@ -209,7 +180,6 @@ class BombExceptFirstClick extends Bomb {
         for (let i = 0; i < relative_squares_exception.length; i++) {
             this.exception.push(relative_squares_exception[i]);
         }
-
     }
 
 
@@ -220,11 +190,9 @@ class BombExceptFirstClick extends Bomb {
 
         for (let i = 0; i < this.number_of_bombs; i++) {
             let temp_position = this.get_random_position();
-
             while (this.is_position_excluded(temp_position)) {
                 temp_position = this.get_random_position();
             }
-
             this.exception.push(temp_position);
             this.position_of_bombs.push(temp_position);
         }

@@ -26,7 +26,6 @@ let nameInput = document.getElementById('playername-field');
 
 
 function enableNameInput() {
-    //console.log(postScore.checked);
     if (postScore.checked == false) {
         nameInput.disabled = true;
     } else {
@@ -64,12 +63,6 @@ function set_all_user_information() {
     let chosen_column_length = parseInt(document.getElementById('colRange').value);
     let chosen_bomb_number = parseInt(document.getElementById('bombRange').value);
 
-    /*console.log(is_need_publish_score);
-    console.log(chosen_name);
-    console.log(chosen_row_length);
-    console.log(chosen_column_length);
-    console.log(chosen_bomb_number);*/
-
     App_Operator.player_name = chosen_name;
     App_Operator.is_guest = is_need_publish_score;
     App_Operator.squares_in_a_row = chosen_row_length;
@@ -85,9 +78,6 @@ function set_all_user_information() {
     };
 
     post_board(temp_board_info);
-
-    //$("#storing_board_info").val(JSON.stringify(temp_board_info));
-    //console.log(JSON.stringify(temp_board_info));
 }
 
 
@@ -98,8 +88,6 @@ function finalize() {
         this.set_all_user_information();
         window.location.href = "/game";
     }
-
-    //window.location.href = "/game";
 }
 
 function redirectHome() {

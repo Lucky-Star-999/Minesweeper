@@ -7,11 +7,9 @@ var btn = document.getElementById("myBtn2");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-
 function open_modal2() {
   modal.style.display = "block";
 }
-
 
 function close_modal2() {
   modal.style.display = "none";

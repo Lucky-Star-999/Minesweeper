@@ -331,16 +331,7 @@ var App_Operator_obj = (function () {
                 this.board_information = temp_2d_arr;
 
             },
-//////////////////////////////////////////////////////////////// Phần của Long ////////////////////////////////////////////////////////////////
-            /*
-                Note: 
-                    Sử dụng this.show(id) để mở ra một ô
-                    Đây là một số công cụ có thể hỗ trợ ông trong việc đổi tọa độ 2D sang 1D và ngược lại
-                    - convert_2d_to_1d --> Chuyển đổi 2D sang 1D
-                    - convert_1d_to_2d_x_axis --> Chuyển đổi 1D sang tọa độ trục x của 2D
-                    - convert_1d_to_2d_y_axis --> Chuyển đổi 1D sang tọa độ trục y của 2D
-                    
-            */
+
             convert_2d_to_1d: function (x_point, y_point) {
                 return (x_point + (y_point * this.squares_in_a_row));
             },
@@ -353,38 +344,6 @@ var App_Operator_obj = (function () {
                 return ((position_1d - (position_1d % this.squares_in_a_row)) / this.squares_in_a_row);
             },
 
-            /*
-                Note: 
-                    - Ông sẽ làm ở phần dưới này
-                    - handle_middle_click: Mọi thứ sẽ được xử lý trong function này, khi user bấm chuột giữa.
-                    Mục tiêu của ông là hiển thị các ô ở phạm vi 3x3
-                    - Chúng ta có 1 array 2D lưu toàn bộ thông tin về tất cả các Squares, ví dụ
-                    board_information =   [[Square_0, Square_1, ...],
-                                                [Square_0, Square_1, ...],
-                                                [Square_2, Square_Bomb, ...],
-                                                [Square_0, Square_1, ...],
-                                                [Square_0, Square_1, ...]
-                                            ];
-                    Mỗi phần tử trong array này là một Class, để phục vụ cho Factory Pattern
-                    Trong mỗi class, có các property sau:
-                        + property_number: Con số nằm phía sau mỗi ô, giả sử ô có bomb = -1, ô mà xung quanh 
-                                            có 2 trái bomb thì property_number = 2 (int)
-                        + is_opened: Ô vuông này có bị click hay chưa (boolean)
-                        + is_flagged: Ô vuông này có gắn cờ hay chưa (boolean)
-                    Mọi chi tiết xem tại Square.js
-                    
-                    Giả sử, để biết một ô ở vị trí (1,2) có thứ gì, thì làm như sau
-                        (Ở đây, mặc định 1 là trục y, 2 là trục x)
-                    let how_many_bomb_arround = this.board_information[1][2].property_number;
-                    let is_this_square_opened = this.board_information[1][2].is_opened;
-                    let is_this_square_flagged = this.board_information[1][2].is_flagged;
-
-                    *Result:
-                        how_many_bomb_arround = -1          (vì ô này là bomb)
-                        is_this_square_opened = false       (vì ô này chưa mở)
-                        is_this_square_flagged = true       (vì ô này đang gắn flag)
-                    
-            */
             handle_middle_click: function (position_clicked) {
                 let x_clicked = this.convert_1d_to_2d_x_axis(position_clicked);
                 let y_clicked = this.convert_1d_to_2d_y_axis(position_clicked);
@@ -427,70 +386,6 @@ var App_Operator_obj = (function () {
                     }
                 }
             },
-            /*
-            Đây là function mẫu cho handle_middle click, nếu thấy không ổn thì ông cứ copy paste lên rồi xài nhe
-            Đã test và chạy 100%
-
-            handle_middle_click_test: function (position_clicked) {
-                // Ở đây, tui ví dụ cho việc mở một ô bằng chuột giữa trước
-                // position_clicked là tọa độ ngay tại ô mà user click vào (tọa độ 1D)
-                this.show(position_clicked); // Sử dụng this.show(position_1D) để hiển thị ra một ô
-
-                // Nhiệm vụ của ông là làm tiếp nhe ...
-                // ...
-                let x_coordinate = this.convert_1d_to_2d_x_axis(position_clicked);
-                let y_coordinate = this.convert_1d_to_2d_y_axis(position_clicked);
-
-                // Open top-left corner
-                if ((y_coordinate - 1) >= 0 && (y_coordinate - 1) < (this.squares_in_a_column) && (x_coordinate - 1) >= 0 && (x_coordinate - 1) < this.squares_in_a_row) {
-                    this.show(this.convert_2d_to_1d(x_coordinate - 1, y_coordinate - 1));
-                }
-
-                // Open top-top corner
-                if ((y_coordinate - 1) >= 0 && (y_coordinate - 1) < (this.squares_in_a_column) && (x_coordinate) >= 0 && (x_coordinate) < this.squares_in_a_row) {
-                    this.show(this.convert_2d_to_1d(x_coordinate, y_coordinate - 1));
-                }
-
-                // Open top-right corner
-                if ((y_coordinate) >= 0 && (y_coordinate - 1) < (this.squares_in_a_column) && (x_coordinate + 1) >= 0 && (x_coordinate + 1) < this.squares_in_a_row) {
-                    this.show(this.convert_2d_to_1d(x_coordinate + 1, y_coordinate - 1));
-                }
-
-                // Open left corner
-                if ((y_coordinate) >= 0 && (y_coordinate) < (this.squares_in_a_column) && (x_coordinate - 1) >= 0 && (x_coordinate - 1) < this.squares_in_a_row) {
-                    this.show(this.convert_2d_to_1d(x_coordinate - 1, y_coordinate));
-                }
-
-                // Open right corner
-                if ((y_coordinate) >= 0 && (y_coordinate) < (this.squares_in_a_column) && (x_coordinate + 1) >= 0 && (x_coordinate + 1) < this.squares_in_a_row) {
-                    this.show(this.convert_2d_to_1d(x_coordinate + 1, y_coordinate));
-                }
-
-                // Open bottom-top corner
-                if ((y_coordinate + 1) >= 0 && (y_coordinate + 1) < (this.squares_in_a_column) && (x_coordinate - 1) >= 0 && (x_coordinate - 1) < this.squares_in_a_row) {
-                    this.show(this.convert_2d_to_1d(x_coordinate - 1, y_coordinate + 1));
-                }
-
-                // Open bottom-top corner
-                if ((y_coordinate + 1) >= 0 && (y_coordinate + 1) < (this.squares_in_a_column) && (x_coordinate) >= 0 && (x_coordinate) < this.squares_in_a_row) {
-                    this.show(this.convert_2d_to_1d(x_coordinate, y_coordinate + 1));
-                }
-
-                // Open bottom-top corner
-                if ((y_coordinate + 1) >= 0 && (y_coordinate + 1) < (this.squares_in_a_column) && (x_coordinate + 1) >= 0 && (x_coordinate + 1) < this.squares_in_a_row) {
-                    this.show(this.convert_2d_to_1d(x_coordinate + 1, y_coordinate + 1));
-                }
-
-            },*/
-
-            /*
-                Note: 
-                    - expand_all_empty_squares: sử dụng để mở ra tất cả các ô trống, nếu muốn làm bài ngầu hơn
-                                                    thì xài BFS :)). Còn nếu không thì làm thoải mái, hoặc lấy từ source cũ
-                                                    của tui cũng được. Giờ mới phát hiện ra source cũ cái cách làm cũng
-                                                    na ná BFS :)))))))
-                    
-            */
             expand_all_empty_squares: function (position_clicked) {
                 
                 let queue = new Queue();
@@ -541,14 +436,6 @@ var App_Operator_obj = (function () {
                 console.log("x = " + x + " y = " + y);
                 return this.board_information[y][x].property_number;
             }
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         };
     }
 
