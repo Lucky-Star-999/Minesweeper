@@ -36,26 +36,54 @@ var Board_Making_obj = (function () {
                 $(".first_click").removeClass("first_click");
             },
             get_board_from_api: function (id) {
-                let url_req = 'https://cors-anywhere.herokuapp.com/https://myapi-minesweeper.herokuapp.com/' +
-                    App_Operator.first_click_position + '/' + App_Operator.number_of_bombs + '/' +
-                    App_Operator.squares_in_a_row + '/' + App_Operator.squares_in_a_column + '';
+                let does_want_to_run_by_api = false;
 
-                fetch(url_req, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                    }).then(res => res.json())
-                    .then(json => {
-                        console.log(json);
-                        this.add_class_name(json);
-                        App_Operator.board = json;
-                        App_Operator.show(id);
-                        App_Operator.initialize_board_information();
-                        App_Operator.expand_all_empty_squares(id);
-                        App_Operator.update_state();
-                        App_Operator.update_state_for_Square_class();  
-                    });
+
+
+
+                if (does_want_to_run_by_api) {
+                    let url_req = 'https://cors-anywhere.herokuapp.com/https://myapi-minesweeper.herokuapp.com/' +
+                        App_Operator.first_click_position + '/' + App_Operator.number_of_bombs + '/' +
+                        App_Operator.squares_in_a_row + '/' + App_Operator.squares_in_a_column + '';
+
+                    fetch(url_req, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                        }).then(res => res.json())
+                        .then(json => {
+                            console.log(json);
+                            this.add_class_name(json);
+                            App_Operator.board = json;
+                            App_Operator.show(id);
+                            App_Operator.initialize_board_information();
+                            App_Operator.expand_all_empty_squares(id);
+                            App_Operator.update_state();
+                            App_Operator.update_state_for_Square_class();
+                        });
+                } else {
+                    let url_req2 = '/getBoardBackUp/' +
+                        App_Operator.first_click_position + '/' + App_Operator.number_of_bombs + '/' +
+                        App_Operator.squares_in_a_row + '/' + App_Operator.squares_in_a_column + '';
+                        console.log(url_req2);
+                    fetch(url_req2, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                        }).then(res => res.json())
+                        .then(json => {
+                            console.log(json);
+                            this.add_class_name(json);
+                            App_Operator.board = json;
+                            App_Operator.show(id);
+                            App_Operator.initialize_board_information();
+                            App_Operator.expand_all_empty_squares(id);
+                            App_Operator.update_state();
+                            App_Operator.update_state_for_Square_class();
+                        });
+                }
             }
         };
     }

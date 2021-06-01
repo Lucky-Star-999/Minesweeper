@@ -6,26 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Menu</title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/index.css" />
+    <link rel="stylesheet" href="../stylesheets/modal.css">
 </head>
 <body>
     <div class = "container" id = "big-container">
         <h1 id="game-title">Minesweeper</h1>
         <!--<input type="text" class="input-field" id="name-field" placeholder="Player Name"></input><br>-->
         <button class='button' id='playButton' onclick="redirectSettings()">Play</button>
-        <button class='button' id='creditsButton'>Credits</button>
-        <div style="margin-top: 20px; width: 800px; text-align: center;">
-            Please activate the button at the link before playing game:
-            <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">
-                https://cors-anywhere.herokuapp.com/corsdemo</a>
-            <p>Because the API has put on real server (herokuapp), so it tends to prevent the response to strange website or locahost.
-                Activate the button on this link to open the request!
-            </p>
-        </div>
+        <button class='button' id='creditsButton' onclick="open_modal2()">Instruction</button>
     </div>
-    <p>Build 0.1</p>
+    <p>Build 0.2</p>
+        <!-- The Modal -->
+        <div id="myModal2" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close" onclick="close_modal2()">&times;</span>
+                    <h2>Instruction</h2>
+                </div>
+                <div class="modal-body" style="margin-left: 10%; margin-right: 10%;">
+                    <div>
+                        <h3>Team members:</h3>
+                        <p>Nguyễn Hoàng Linh - ITITIU19023</p>
+                        <p>Trần Hoàng Long - ITITSB19004</p>
+                        <p>Nguyễn Đức Minh - ITITIU19030</p>
+                        <p>Trần Quang Tùng - ITITIU19237</p>
+                    </div>
+                    <hr/>
+                    <div style="margin-top: 20px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Minesweeper is a logic puzzle game that takes place on a grid "minefield". 
+                        The player's goal is to clear (open) every square in the grid without hitting the mine - 
+                        and to do it as quickly as possible. 
+                        When you open the squares, 
+                        clues will also appear as numbers representing the number of mines located in the 8 squares around them.
+                    </div>
+                    <div style="margin-top: 10px; margin-bottom: 20px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        During the game, you can mark places where you think there will be mines by right-clicking to insert a flag. 
+                        Be careful, just accidentally hitting a landmine is enough to make the game over!
+                    </div>
+                </div>
+    
+            </div>
+    
+        </div>
     
 </body>
 
 <script src="../javascripts/index.js"></script>
+<script src="../javascripts/credit.js"></script>
 
 </html>

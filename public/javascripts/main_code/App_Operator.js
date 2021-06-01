@@ -86,7 +86,26 @@ var App_Operator_obj = (function () {
                     let id_query = "#" + i;
                     current_state[i] = $(id_query).attr("class");
                 }
-                this.history_states.push(current_state);
+
+                // If all the elements do not change, the state should not be updated
+                let fake_change = true;
+                if (this.history_states.length === 0) {
+                    fake_change = false;
+                    this.history_states.push(current_state);
+                } else {
+                    let old_state = this.history_states[this.history_states.length - 1];
+                    for (let i = 0; i < current_state.length; i++) {
+                        if (current_state[i] !== old_state[i]) {
+                            fake_change = false;
+                            break;
+                        }
+                    }
+                    if (fake_change) {
+
+                    } else {
+                        this.history_states.push(current_state);
+                    }
+                }
 
             },
             update_state_for_Square_class: function () {
