@@ -67,7 +67,7 @@ body {
     transform: translate(0, -5px);
     cursor: pointer;
     transition: 0.3s;
-    box-shadow: 2px 2px 2px #707070;
+    box-shadow: 2px 2px 2px black;
 }
 
 #instructionButton {
@@ -80,7 +80,7 @@ body {
     cursor: pointer;
     transition: 0.3s;
     transform: translate(0, -5px);
-    box-shadow: 2px 2px 2px #707070;
+    box-shadow: 2px 2px 2px black;
 }
 
 
